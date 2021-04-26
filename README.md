@@ -8,7 +8,8 @@
 
 ## Features
 
-Demo GIF
+<img width="1437" alt="Screenshot 2021-04-26 at 3 51 02 PM" src="https://user-images.githubusercontent.com/22280901/116067878-368ea780-a6a7-11eb-8685-a329891dfd4c.png">
+
 
 ## Getting started
 
