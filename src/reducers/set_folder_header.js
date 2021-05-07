@@ -1,4 +1,4 @@
-import { SET_FOLDER_HEADER } from '~/constants/ActionTypes';
+import { SET_FOLDER_HEADER } from '../constants/ActionTypes';
 
 const initialState = {
   error: null,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+
 // import { connect } from 'react-redux';
 // import { Portal } from 'react-portal';
 // import { flattenToAppURL } from '@plone/volto/helpers';
@@ -44,7 +45,7 @@ class TopicsView extends Component {
 
   componentDidMount() {
     // this.props.getLocalnavigation(flattenToAppURL(this.props.content['@id']));
-    const mainItem = this.props.content.items[0];
+    const mainItem = this.props.content?.items[0];
     const mainUrl = mainItem && mainItem.url;
     if (__CLIENT__ && mainUrl && window) {
       this.setState({ redirect: mainUrl });
@@ -168,7 +169,7 @@ class TopicsView extends Component {
     //       </a>
     //     </Portal> */}
     //   </Container>
-    //);
+    // );
   }
 }
 

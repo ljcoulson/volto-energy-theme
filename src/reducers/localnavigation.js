@@ -1,4 +1,4 @@
-import { GET_LOCALNAVIGATION } from '~/constants/ActionTypes';
+import { GET_LOCALNAVIGATION } from '../constants/ActionTypes';
 
 const initialState = {
   error: null,

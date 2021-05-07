@@ -1,4 +1,4 @@
-import { GET_PARENT_FOLDER_DATA } from '~/constants/ActionTypes';
+import { GET_PARENT_FOLDER_DATA } from '../constants/ActionTypes';
 
 const initialState = {
   error: null,

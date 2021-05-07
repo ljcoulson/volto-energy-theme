@@ -218,7 +218,7 @@ export default compose(
   injectIntl,
   connect(
     (state) => ({
-      search: state.quicksearch.items,
+      search: state.quicksearch?.items,
     }),
     { quickResetSearchContent, quickSearchContent },
   ),

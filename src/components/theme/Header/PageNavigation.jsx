@@ -163,7 +163,7 @@ class PageNavigation extends Component {
       <React.Fragment>
         <BodyClass
           className={
-            this.state.subMenu.items && this.state.subMenu.items.length
+            this.state.subMenu?.items && this.state.subMenu?.items.length
               ? 'contentpage menu-open-contentpage'
               : 'contentpage'
           }
@@ -229,7 +229,7 @@ class PageNavigation extends Component {
                         : 'menu-item'
                     }
                   >
-                    {item.items && item.items.length ? (
+                    {item?.items && item.items.length ? (
                       <React.Fragment>
                         <a
                           role="button"
@@ -251,7 +251,7 @@ class PageNavigation extends Component {
                         </a>
                         {this.isActive(getPath(item['@id'] || item.url)) && (
                           <div className="menuExpanded" id="menuExpanded">
-                            {item.items.find(
+                            {item?.items.find(
                               (i) =>
                                 __CLIENT__ &&
                                 window &&
@@ -300,13 +300,13 @@ class PageNavigation extends Component {
                               ''
                             )}
 
-                            {item.items.length > 0 ? (
+                            {item?.items.length > 0 ? (
                               <ul className="localnavigation">
-                                {item.items.find((it) =>
+                                {item?.items?.find((it) =>
                                   this.props.pathname.includes(
                                     getPath(it['@id'] || it.url),
                                   ),
-                                ).items
+                                )?.items
                                   ? item.items
                                       .find((it) =>
                                         this.props.pathname.includes(
@@ -436,7 +436,7 @@ class PageNavigation extends Component {
             </MenuPosition>
           </div>
 
-          {this.state.subMenu.items && this.state.subMenu.items.length ? (
+          {this.state.subMenu?.items && this.state.subMenu?.items.length ? (
             <div
               className="second-level"
               style={{ paddingTop: this.state.currentTopDistance }}
@@ -446,7 +446,7 @@ class PageNavigation extends Component {
                 onClick={() => this.setSubmenu(this.state.subMenu.type, [])}
                 className="mobile-back-button"
               />
-              {this.state.subMenu.items.map((item) => (
+              {this.state.subMenu?.items.map((item) => (
                 <div
                   key={getPath(item['@id'] || item.url)}
                   className={
@@ -491,7 +491,7 @@ class PageNavigation extends Component {
           ) : (
             <div />
           )}
-          {this.state.subTopics.items && this.state.subTopics.items.length ? (
+          {this.state.subTopics?.items && this.state.subTopics?.items.length ? (
             <div
               className="third-level"
               style={{ paddingTop: this.state.currentTopDistance }}

@@ -18,7 +18,7 @@ import {
   GET_LOCALNAVIGATION,
   QUICK_RESET_SEARCH_CONTENT,
   QUICK_SEARCH_CONTENT,
-} from '~/constants/ActionTypes';
+} from '../constants/ActionTypes';
 
 import { compact, concat, isArray, join, map, pickBy, toPairs } from 'lodash';
 

@@ -1,4 +1,4 @@
-import { SET_FOLDER_TABS } from '~/constants/ActionTypes';
+import { SET_FOLDER_TABS } from '../constants/ActionTypes';
 
 const initialState = {
   error: null,

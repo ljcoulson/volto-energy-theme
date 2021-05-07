@@ -3,7 +3,7 @@
  * @module reducers/data_providers
  */
 
-import { GET_INDEX_VALUES } from '~/constants/ActionTypes';
+import { GET_INDEX_VALUES } from '../constants/ActionTypes';
 
 const initialState = {
   error: null,
