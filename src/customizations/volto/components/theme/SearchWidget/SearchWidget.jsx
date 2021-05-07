@@ -65,7 +65,7 @@ class SearchWidget extends Component {
     document.removeEventListener('mousedown', this.handleClickOutside, false);
   }
 
-  handleClickOutside = e => {
+  handleClickOutside = (e) => {
     console.log('handleclickoutside');
     if (
       this.linkFormContainer.current &&
@@ -144,7 +144,7 @@ class SearchWidget extends Component {
     event && event.preventDefault();
   }
 
-  onSelectItem = item => {
+  onSelectItem = (item) => {
     this.setState(
       {
         text: item.title,
@@ -187,7 +187,7 @@ class SearchWidget extends Component {
           this.props.search &&
           this.props.search.length ? (
             <ul className="floating_search_results">
-              {this.props.search.map(item => (
+              {this.props.search.map((item) => (
                 <li
                   onClick={() => this.onSelectItem(item)}
                   stylixe={{ padding: '5px' }}
@@ -214,7 +214,7 @@ export default compose(
   withRouter,
   injectIntl,
   connect(
-    state => ({
+    (state) => ({
       search: state.quicksearch.items,
     }),
     { quickResetSearchContent, quickSearchContent },

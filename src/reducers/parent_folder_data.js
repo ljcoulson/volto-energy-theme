@@ -1,4 +1,3 @@
-
 import { GET_PARENT_FOLDER_DATA } from '~/constants/ActionTypes';
 
 const initialState = {
@@ -9,9 +8,8 @@ const initialState = {
 };
 
 export default function parent_folder_data(state = initialState, action = {}) {
-  if(action.type === 'GET_PARENT_FOLDER_DATA_SUCCESS') {
-
-    console.log('getting parent folder data', action)
+  if (action.type === 'GET_PARENT_FOLDER_DATA_SUCCESS') {
+    console.log('getting parent folder data', action);
   }
   switch (action.type) {
     case `${GET_PARENT_FOLDER_DATA}_PENDING`:

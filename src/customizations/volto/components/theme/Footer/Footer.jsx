@@ -26,7 +26,7 @@ const messages = defineMessages({
  * @param {Object} intl Intl object
  * @returns {string} Markup of the component
  */
-const Footer = props => (
+const Footer = (props) => (
   <Segment
     role="contentinfo"
     vertical
@@ -104,6 +104,6 @@ Footer.propTypes = {
    */
 };
 
-export default connect(state => ({
+export default connect((state) => ({
   token: state.userSession.token,
 }))(injectIntl(Footer));

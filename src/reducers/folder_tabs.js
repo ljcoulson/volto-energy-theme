@@ -16,7 +16,7 @@ const initialState = {
  */
 export default function folder_tabs(state = initialState, action = {}) {
   if (action.type === SET_FOLDER_TABS) {
-      console.log('in folder tabs', action.payload)
+    console.log('in folder tabs', action.payload);
     return {
       ...state,
       error: null,
