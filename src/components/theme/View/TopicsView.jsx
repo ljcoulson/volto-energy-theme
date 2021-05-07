@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from '@plone/volto/helpers';
 import { Redirect } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
 // import { connect } from 'react-redux';
 // import { Portal } from 'react-portal';
 // import { flattenToAppURL } from '@plone/volto/helpers';
@@ -24,7 +22,6 @@ class TopicsView extends Component {
       // tabs: null,
       redirect: false,
     };
-    console.log('topicsView');
   }
   static propTypes = {
     content: PropTypes.shape({
@@ -49,7 +46,6 @@ class TopicsView extends Component {
     // this.props.getLocalnavigation(flattenToAppURL(this.props.content['@id']));
     const mainItem = this.props.content.items[0];
     const mainUrl = mainItem && mainItem.url;
-    console.log('mainitem,mainurl', mainItem, mainUrl);
     if (__CLIENT__ && mainUrl && window) {
       this.setState({ redirect: mainUrl });
     } else {
@@ -95,85 +91,84 @@ class TopicsView extends Component {
   // }
 
   render() {
-    console.log('redirect state', this.state.redirect);
     if (this.state.redirect) {
       return <Redirect to={{ pathname: this.state.redirect }} />;
     } else {
       return '';
     }
-    const content = this.props.content;
-    // const localNavigation =
-    //   (this.props.localNavigation.items &&
-    //     this.props.localNavigation.items.filter(
-    //       item => item.title !== 'Home',
-    //     )) ||
-    //   [];
-    // console.log('pathname', this.props.content['@id'] + '/manage_interfaces');
-    return (
-      <Container className="view-wrapper">
-        {this.state.tabs}
-        <Helmet title={content.title} />
-        <article id="content">
-          <header>
-            <h1 className="documentFirstHeading">{content.title}</h1>
-            {content.description && (
-              <p className="documentDescription">{content.description}</p>
-            )}
-          </header>
-          <section id="content-core">
-            {/* {content.items.map(item => (
-              <article key={item.url}>
-                <h2>
-                  <Link to={item.url} title={item['@type']}>
-                    {item.title}
-                  </Link>
-                </h2>
-                {item.image && (
-                  <Image
-                    clearing
-                    floated="right"
-                    alt={item.image_caption ? item.image_caption : item.title}
-                    src={item.image.scales.thumb.download}
-                  />
-                )}
-                {item.description && <p>{item.description}</p>}
-                <p>
-                  <Link to={item.url}>
-                    <FormattedMessage
-                      id="Read More…"
-                      defaultMessage="Read More…"
-                    />
-                  </Link>
-                </p>
-              </article>
-            ))} */}
-          </section>
-        </article>
+    // const content = this.props.content;
+    // // const localNavigation =
+    // //   (this.props.localNavigation.items &&
+    // //     this.props.localNavigation.items.filter(
+    // //       item => item.title !== 'Home',
+    // //     )) ||
+    // //   [];
+    // // console.log('pathname', this.props.content['@id'] + '/manage_interfaces');
+    // return (
+    //   <Container className="view-wrapper">
+    //     {this.state.tabs}
+    //     <Helmet title={content.title} />
+    //     <article id="content">
+    //       <header>
+    //         <h1 className="documentFirstHeading">{content.title}</h1>
+    //         {content.description && (
+    //           <p className="documentDescription">{content.description}</p>
+    //         )}
+    //       </header>
+    //       <section id="content-core">
+    //         {/* {content.items.map(item => (
+    //           <article key={item.url}>
+    //             <h2>
+    //               <Link to={item.url} title={item['@type']}>
+    //                 {item.title}
+    //               </Link>
+    //             </h2>
+    //             {item.image && (
+    //               <Image
+    //                 clearing
+    //                 floated="right"
+    //                 alt={item.image_caption ? item.image_caption : item.title}
+    //                 src={item.image.scales.thumb.download}
+    //               />
+    //             )}
+    //             {item.description && <p>{item.description}</p>}
+    //             <p>
+    //               <Link to={item.url}>
+    //                 <FormattedMessage
+    //                   id="Read More…"
+    //                   defaultMessage="Read More…"
+    //                 />
+    //               </Link>
+    //             </p>
+    //           </article>
+    //         ))} */}
+    //       </section>
+    //     </article>
 
-        {/* <Portal node={__CLIENT__ && document.getElementById('menuExpanded')}>
-          <ul className="localNavigation">
-            {localNavigation.map(item => (
-              <li key={`localnav-${item['@id']}`}>
-                <Link to={flattenToAppURL(item['@id'])} key={item['@id']}>
-                  {item.title}
-                </Link>
-              </li>s
-            ))}
-          </ul>
-        </Portal> */}
-        {/*
-        <Portal node={__CLIENT__ && document.querySelector('.toolbar-actions')}>
-          <a
-            href={this.props.content['@id'] + '/manage_interfaces'}
-            key={this.props.content['@id']}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Manage
-          </a>
-        </Portal> */}
-      </Container>
-    );
+    //     {/* <Portal node={__CLIENT__ && document.getElementById('menuExpanded')}>
+    //       <ul className="localNavigation">
+    //         {localNavigation.map(item => (
+    //           <li key={`localnav-${item['@id']}`}>
+    //             <Link to={flattenToAppURL(item['@id'])} key={item['@id']}>
+    //               {item.title}
+    //             </Link>
+    //           </li>s
+    //         ))}
+    //       </ul>
+    //     </Portal> */}
+    //     {/*
+    //     <Portal node={__CLIENT__ && document.querySelector('.toolbar-actions')}>
+    //       <a
+    //         href={this.props.content['@id'] + '/manage_interfaces'}
+    //         key={this.props.content['@id']}
+    //         target="_blank"
+    //         rel="noreferrer noopener"
+    //       >
+    //         Manage
+    //       </a>
+    //     </Portal> */}
+    //   </Container>
+    //);
   }
 }
 

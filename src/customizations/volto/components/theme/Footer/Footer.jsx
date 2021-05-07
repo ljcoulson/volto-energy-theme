@@ -4,21 +4,21 @@
  */
 
 import React from 'react';
-import { Container, List, Segment, Grid } from 'semantic-ui-react';
+import { Segment, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import eeaLogo from '~/components/theme/Footer/ec.svg.png';
-import ecLogo from '~/components/theme/Footer/eea.png';
+import { FormattedMessage, injectIntl } from 'react-intl';
+import eeaLogo from '../../../../../components/theme/Footer/ec.svg.png';
+import ecLogo from '../../../../../components/theme/Footer/eea.png';
 import { connect } from 'react-redux';
 
 import { Anontools } from '@plone/volto/components';
 
-const messages = defineMessages({
-  copyright: {
-    id: 'Copyright',
-    defaultMessage: 'Copyright',
-  },
-});
+// const messages = defineMessages({
+//   copyright: {
+//     id: 'Copyright',
+//     defaultMessage: 'Copyright',
+//   },
+// });
 
 /**
  * Component to display the footer.

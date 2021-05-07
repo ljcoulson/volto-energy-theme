@@ -58,7 +58,6 @@ export function getLocalnavigation(folder) {
 }
 
 export function setFolderTabs(payload) {
-  console.log('in action', 'setting folder tabs', payload);
   return {
     type: SET_FOLDER_TABS,
     payload: payload,
@@ -66,8 +65,6 @@ export function setFolderTabs(payload) {
 }
 
 export function getParentFolderData(url) {
-  console.log('in action', 'getparentfolderdata', url);
-
   return {
     type: GET_PARENT_FOLDER_DATA,
     request: {
@@ -78,8 +75,6 @@ export function getParentFolderData(url) {
 }
 
 export function quickSearchContent(url, options, subrequest = null) {
-  console.log('in action - quicksearch');
-
   let queryArray = [];
   const arrayOptions = pickBy(options, (item) => isArray(item));
 

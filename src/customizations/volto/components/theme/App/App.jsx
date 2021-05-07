@@ -20,13 +20,11 @@ import config from '@plone/volto/registry';
 import Error from '@plone/volto/error';
 
 import {
-  Breadcrumbs,
   Footer,
   Header,
   Icon,
   OutdatedBrowser,
   AppExtras,
-  SkipLinks,
 } from '@plone/volto/components';
 import { BodyClass, getBaseUrl, getView, isCmsUi } from '@plone/volto/helpers';
 import {
@@ -43,7 +41,7 @@ import MultilingualRedirector from '@plone/volto/components/theme/MultilingualRe
 
 import * as Sentry from '@sentry/browser';
 
-import PageHeader from '~/components/theme/Header/PageHeader';
+import PageHeader from '../../../../../components/theme/Header/PageHeader';
 // import PageHeaderBg from '~/components/theme/Header/PageHeaderBg';
 
 /**

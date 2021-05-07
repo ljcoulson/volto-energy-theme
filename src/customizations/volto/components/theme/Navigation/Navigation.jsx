@@ -7,7 +7,7 @@ import { isMatch } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import cx from 'classnames';
 import { getBaseUrl } from '@plone/volto/helpers';
 import { BodyClass } from '@plone/volto/helpers';
@@ -15,11 +15,11 @@ import rightKey from '@plone/volto/icons/right-key.svg';
 import backIcon from '@plone/volto/icons/back.svg';
 import { Icon } from '@plone/volto/components';
 import config from '@plone/volto/registry';
-import { getBasePath } from '~/helpers';
+import { getBasePath } from '../../../../../helpers';
 
 import { getNavigation } from '@plone/volto/actions';
 
-import bgimage from '~/components/theme/Navigation/home.jpg';
+import bgimage from '../../../../../components/theme/Navigation/home.jpg';
 
 const messages = defineMessages({
   closeMobileMenu: {
@@ -254,6 +254,7 @@ class Navigation extends Component {
                         this.setSubmenu(item.title, item.items, ev)
                       }
                       onKeyPress={() => {}}
+                      tabIndex={0}
                     >
                       {this.state.subMenu.type === item.title && (
                         <Icon
@@ -297,6 +298,7 @@ class Navigation extends Component {
                         this.setSubtopics(item.title, item.items, ev)
                       }
                       onKeyPress={() => {}}
+                      tabIndex={0}
                     >
                       {this.state.subTopics.type === item.title && (
                         <Icon

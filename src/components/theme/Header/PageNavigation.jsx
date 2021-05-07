@@ -16,7 +16,7 @@ import { flattenToAppURL } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 import rightCircle from '@plone/volto/icons/circle-right.svg';
 import MenuPosition from './MenuPosition';
-import { getBasePath } from '~/helpers';
+import { getBasePath } from '../../../helpers';
 import { BodyClass } from '@plone/volto/helpers';
 
 const messages = defineMessages({
@@ -237,6 +237,7 @@ class PageNavigation extends Component {
                             this.setSubmenu(item.title, item.items, ev)
                           }
                           onKeyPress={() => {}}
+                          tabIndex={0}
                         >
                           {this.state.subMenu.type === item.title && (
                             <Icon
@@ -461,6 +462,7 @@ class PageNavigation extends Component {
                         this.setSubtopics(item.title, item.items, ev)
                       }
                       onKeyPress={() => {}}
+                      tabIndex={0}
                     >
                       {this.state.subTopics.type === item.title && (
                         <Icon

@@ -55,7 +55,6 @@ export default function search(state = initialState, action = {}) {
             loaded: false,
           };
     case `${QUICK_SEARCH_CONTENT}_SUCCESS`:
-      console.log('in reducer - quicksearch');
       return action.subrequest
         ? {
             ...state,

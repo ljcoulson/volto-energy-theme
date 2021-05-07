@@ -14,10 +14,13 @@ import { connect } from 'react-redux';
 import { Icon } from '@plone/volto/components';
 import zoomSVG from '@plone/volto/icons/zoom.svg';
 
-import { quickResetSearchContent, quickSearchContent } from '~/actions';
+import {
+  quickResetSearchContent,
+  quickSearchContent,
+} from '../../../../../actions';
 
 import { doesNodeContainClick } from 'semantic-ui-react/dist/commonjs/lib';
-import URLUtils from '@plone/volto/components/manage/AnchorPlugin/utils/URLUtils';
+//import URLUtils from '@plone/volto/components/manage/AnchorPlugin/utils/URLUtils';
 
 const messages = defineMessages({
   search: {
@@ -66,7 +69,6 @@ class SearchWidget extends Component {
   }
 
   handleClickOutside = (e) => {
-    console.log('handleclickoutside');
     if (
       this.linkFormContainer.current &&
       doesNodeContainClick(this.linkFormContainer.current, e)
@@ -134,7 +136,6 @@ class SearchWidget extends Component {
    * @returns {undefined}
    */
   onSubmit(event) {
-    console.log('onsubmit');
     const section = this.state.section ? `&path=${this.props.pathname}` : '';
     this.props.history.push({
       pathname: '/search',
@@ -188,8 +189,10 @@ class SearchWidget extends Component {
           this.props.search.length ? (
             <ul className="floating_search_results">
               {this.props.search.map((item) => (
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                 <li
                   onClick={() => this.onSelectItem(item)}
+                  onKeyDown={() => this.onSelectItem(item)} //a11y
                   stylixe={{ padding: '5px' }}
                 >
                   {item.title}
