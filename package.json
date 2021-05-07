@@ -16,7 +16,12 @@
     "type": "git",
     "url": "git@github.com:eea/volto-energy-theme.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@n8tb1t/use-scroll-position": "^2.0.3",
+    "mgr-pdf-viewer-react": "^1.0.3",
+    "react-scrollspy": "^3.4.3",
+    "volto-addons": "github:eea/volto-addons"
+  },
   "scripts": {
     "release": "release-it",
     "bootstrap": "npm install -g ejs; npm link ejs; node bootstrap",
