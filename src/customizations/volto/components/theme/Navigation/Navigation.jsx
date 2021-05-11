@@ -346,8 +346,8 @@ class Navigation extends Component {
                 >
                   <Link
                     to={
-                      item.items
-                        ? getPath(item.items[0]['@id'] || item.items[0].url)
+                      item.items.length > 0
+                        ? getPath(item.items?.[0]['@id'] || item.items?.[0].url)
                         : getPath(item['@id'] || item.url)
                     }
                     key={getPath(item['@id'] || item.url)}
