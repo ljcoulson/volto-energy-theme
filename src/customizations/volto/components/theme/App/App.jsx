@@ -16,7 +16,7 @@ import join from 'lodash/join';
 import trim from 'lodash/trim';
 import cx from 'classnames';
 import config from '@plone/volto/registry';
-
+import { PluggablesProvider } from '@plone/volto/components/manage/Pluggable';
 import Error from '@plone/volto/error';
 
 import {
@@ -121,125 +121,127 @@ class App extends Component {
     const hideMenu = this.checkProps(this.props);
     const ConnectionRefusedView = views.errorViews.ECONNREFUSED;
     return (
-      <Fragment>
-        <BodyClass className={`view-${action}view`} />
-        {/* <BodyClass className={this.props.pathname === '/' ? 'homepage' : ''} /> */}
-        {/* Body class depending on content type */}
-        {this.props.content && this.props.content['@type'] && (
-          <BodyClass
-            className={`contenttype-${this.props.content['@type']
-              .replace(' ', '-')
-              .toLowerCase()}`}
-          />
-        )}
-
-        {/* Body class depending on sections */}
-        <BodyClass
-          className={cx({
-            [trim(join(split(this.props.pathname, '/'), ' section-'))]:
-              this.props.pathname !== '/',
-            siteroot: this.props.pathname === '/',
-            'is-authenticated': !!this.props.token,
-            'is-anonymous': !this.props.token,
-            'cms-ui': isCmsUI,
-            'public-ui': !isCmsUI,
-          })}
-        />
-        {this.props.pathname === '/' ? (
-          <React.Fragment>
-            <Header
-              actualPathName={this.props.pathname}
-              homepage={true}
-              pathname={path}
-              navigationItems={this.props.navigation}
+      <PluggablesProvider>
+        <Fragment>
+          <BodyClass className={`view-${action}view`} />
+          {/* <BodyClass className={this.props.pathname === '/' ? 'homepage' : ''} /> */}
+          {/* Body class depending on content type */}
+          {this.props.content && this.props.content['@type'] && (
+            <BodyClass
+              className={`contenttype-${this.props.content['@type']
+                .replace(' ', '-')
+                .toLowerCase()}`}
             />
-            <MultilingualRedirector pathname={this.props.pathname}>
-              <Segment basic className="content-area">
-                <main>
-                  <OutdatedBrowser />
-                  {this.props.connectionRefused ? (
-                    <ConnectionRefusedView />
-                  ) : this.state.hasError ? (
-                    <Error
-                      message={this.state.error.message}
-                      stackTrace={this.state.errorInfo.componentStack}
-                    />
-                  ) : (
-                    renderRoutes(this.props.route.routes, {
-                      staticContext: this.props.staticContext,
-                    })
-                  )}
-                </main>
-              </Segment>
-            </MultilingualRedirector>
-          </React.Fragment>
-        ) : (
-          <div className="content-page">
-            <PageHeader />
-            <Grid columns={3} divided>
-              <Grid.Row>
-                {!hideMenu && (
-                  <Grid.Column
-                    tablet={12}
-                    computer={3}
-                    largeScreen={3}
-                    className="menu-hamburger left-menu-wrapper"
-                  >
-                    <Header
-                      noBreadcrumbs={true}
-                      actualPathName={this.props.pathname}
-                      pathname={path}
-                      homepage={false}
-                      navigationItems={this.props.navigation}
-                    />
-                  </Grid.Column>
-                )}
+          )}
 
-                <Grid.Column
-                  tablet={12}
-                  computer={hideMenu ? 12 : 6}
-                  largeScreen={hideMenu ? 12 : 6}
-                >
-                  <main className="content-page">
-                    <div className="editor-toolbar-wrapper" />
-                    {this.state.hasError ? (
+          {/* Body class depending on sections */}
+          <BodyClass
+            className={cx({
+              [trim(join(split(this.props.pathname, '/'), ' section-'))]:
+                this.props.pathname !== '/',
+              siteroot: this.props.pathname === '/',
+              'is-authenticated': !!this.props.token,
+              'is-anonymous': !this.props.token,
+              'cms-ui': isCmsUI,
+              'public-ui': !isCmsUI,
+            })}
+          />
+          {this.props.pathname === '/' ? (
+            <React.Fragment>
+              <Header
+                actualPathName={this.props.pathname}
+                homepage={true}
+                pathname={path}
+                navigationItems={this.props.navigation}
+              />
+              <MultilingualRedirector pathname={this.props.pathname}>
+                <Segment basic className="content-area">
+                  <main>
+                    <OutdatedBrowser />
+                    {this.props.connectionRefused ? (
+                      <ConnectionRefusedView />
+                    ) : this.state.hasError ? (
                       <Error
                         message={this.state.error.message}
                         stackTrace={this.state.errorInfo.componentStack}
                       />
                     ) : (
-                      renderRoutes(this.props.route.routes)
+                      renderRoutes(this.props.route.routes, {
+                        staticContext: this.props.staticContext,
+                      })
                     )}
                   </main>
-                </Grid.Column>
-                {!hideMenu && (
+                </Segment>
+              </MultilingualRedirector>
+            </React.Fragment>
+          ) : (
+            <div className="content-page">
+              <PageHeader />
+              <Grid columns={3} divided>
+                <Grid.Row>
+                  {!hideMenu && (
+                    <Grid.Column
+                      tablet={12}
+                      computer={3}
+                      largeScreen={3}
+                      className="menu-hamburger left-menu-wrapper"
+                    >
+                      <Header
+                        noBreadcrumbs={true}
+                        actualPathName={this.props.pathname}
+                        pathname={path}
+                        homepage={false}
+                        navigationItems={this.props.navigation}
+                      />
+                    </Grid.Column>
+                  )}
+
                   <Grid.Column
                     tablet={12}
-                    computer={3}
-                    largeScreen={3}
-                    className="inPageNavigation"
-                  />
-                )}
-              </Grid.Row>
-            </Grid>
-          </div>
-        )}
-        <ToastContainer
-          position={toast.POSITION.BOTTOM_CENTER}
-          hideProgressBar
-          transition={Slide}
-          autoClose={5000}
-          closeButton={
-            <Icon
-              className="toast-dismiss-action"
-              name={clearSVG}
-              size="18px"
-            />
-          }
-        />
-        <Footer />
-        <AppExtras {...this.props} />
-      </Fragment>
+                    computer={hideMenu ? 12 : 6}
+                    largeScreen={hideMenu ? 12 : 6}
+                  >
+                    <main className="content-page">
+                      <div className="editor-toolbar-wrapper" />
+                      {this.state.hasError ? (
+                        <Error
+                          message={this.state.error.message}
+                          stackTrace={this.state.errorInfo.componentStack}
+                        />
+                      ) : (
+                        renderRoutes(this.props.route.routes)
+                      )}
+                    </main>
+                  </Grid.Column>
+                  {!hideMenu && (
+                    <Grid.Column
+                      tablet={12}
+                      computer={3}
+                      largeScreen={3}
+                      className="inPageNavigation"
+                    />
+                  )}
+                </Grid.Row>
+              </Grid>
+            </div>
+          )}
+          <ToastContainer
+            position={toast.POSITION.BOTTOM_CENTER}
+            hideProgressBar
+            transition={Slide}
+            autoClose={5000}
+            closeButton={
+              <Icon
+                className="toast-dismiss-action"
+                name={clearSVG}
+                size="18px"
+              />
+            }
+          />
+          <Footer />
+          <AppExtras {...this.props} />
+        </Fragment>
+      </PluggablesProvider>
     );
   }
 }
