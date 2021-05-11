@@ -1,8 +1,6 @@
 {
   "baseUrl": "http://localhost:3000",
-  "env": {
-    "API_PATH": "http://localhost:8080/energy"
-  },
+
   "viewportWidth": 1280,
   "defaultCommandTimeout": 15000,
   "reporter": "junit",
