@@ -1,0 +1,150 @@
+/*******************************
+         Theme Overrides
+*******************************/
+.search-item {
+  .description {
+    display: flex;
+
+    .searchMetadata {
+      display: inline-block;
+      // min-width: 200px;
+      width: 40%;
+      padding-left: 0.75rem;
+    }
+
+    .descriptionBody {
+      display: inline-block;
+      width: 60%;
+      padding-right: 0.75rem;
+      border-right: 1px solid #eee;
+    }
+  }
+  padding: 1rem 2rem !important;
+
+  &:nth-child(even) {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background: #fafafa !important;
+  }
+}
+
+.search-listing {
+  margin-right: -2rem;
+  margin-left: -2rem;
+}
+
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -2rem;
+  margin-right: -2rem;
+  margin-left: -2rem;
+
+  .ui.input {
+    flex-grow: 1;
+
+    > input {
+      padding: 1rem 0;
+      padding-right: 3rem;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      margin: 0 2rem;
+      border-radius: 0;
+      border-radius: none;
+      font-size: 1.5rem;
+    }
+  }
+
+  .searchIcon {
+    position: absolute;
+    right: 1rem;
+    padding: 10px;
+    cursor: pointer;
+  }
+}
+
+// Search
+
+.item-listing {
+  // margin-top: 2rem;
+}
+
+.item-listing .ui.breadcrumb .divider {
+  margin: 0 0.3rem;
+}
+
+.item-listing .ui.items > .item {
+  margin-bottom: 2rem;
+}
+
+.item-listing .tile-title {
+  margin-bottom: 0.5em;
+}
+
+.item-listing .ui.items > .item .extra {
+  color: inherit;
+  font-size: 14px;
+}
+
+.item-listing .item-breadcrumb {
+  margin-top: 0.6em;
+}
+
+.item-listing .muted {
+  color: #aaa;
+}
+
+.item-listing .ui.items .header > a {
+  color: inherit;
+}
+
+.noResults {
+  padding: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.floating_search_results {
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  overflow: auto;
+  max-height: 264px;
+  padding: 0.5rem;
+  padding-left: 0;
+  margin-top: 0;
+  margin-top: -3px;
+  background: #152529;
+  color: white;
+  list-style-type: none;
+
+  li {
+    border-bottom: 1px solid #ffffff24;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 1.9;
+
+    &:hover {
+      border-bottom-color: white;
+    }
+  }
+  @media (max-width: 1000px) {
+    display: none !important;
+  }
+}
+
+.homepage {
+  .floating_search_results {
+    margin-top: -2.5rem;
+    background-color: transparent;
+    color: white;
+  }
+}
+
+.searchbox {
+  margin-bottom: 0 !important;
+}
