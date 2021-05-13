@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BodyClass } from '@plone/volto/helpers';
 
-import ecLogo from '../../../../../components/theme/Header/ec_white_negative_color.png';
-import eeaLogo from '../../../../../components/theme/Header/eea_white.png';
+import ecLogo from '@eeacms/volto-energy-theme/components/theme/Header/ec_white_negative_color.png';
+import eeaLogo from '@eeacms/volto-energy-theme/components/theme/Header/eea_white.png';
 
 import {
   Logo,
@@ -12,7 +12,7 @@ import {
   SearchWidget,
   Breadcrumbs,
 } from '@plone/volto/components';
-import PageNavigation from '../../../../../components/theme/Header/PageNavigation';
+import PageNavigation from '@eeacms/volto-energy-theme/components/theme/Header/PageNavigation';
 
 // import { Container, Segment } from 'semantic-ui-react';
 // import { Portal } from 'react-portal';

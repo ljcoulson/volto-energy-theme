@@ -41,7 +41,7 @@ import MultilingualRedirector from '@plone/volto/components/theme/MultilingualRe
 
 import * as Sentry from '@sentry/browser';
 
-import PageHeader from '../../../../../components/theme/Header/PageHeader';
+import PageHeader from '@eeacms/volto-energy-theme/components/theme/Header/PageHeader';
 // import PageHeaderBg from '~/components/theme/Header/PageHeaderBg';
 
 /**

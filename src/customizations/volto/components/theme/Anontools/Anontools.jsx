@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Icon } from '@plone/volto/components';
-import { getBasePath } from '../../../../../helpers';
+import { getBasePath } from '@eeacms/volto-energy-theme/helpers';
 
 import config from '@plone/volto/registry';
 import user from '@plone/volto/icons/user.svg';

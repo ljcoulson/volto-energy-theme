@@ -16,7 +16,7 @@ import { flattenToAppURL } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 import rightCircle from '@plone/volto/icons/circle-right.svg';
 import MenuPosition from './MenuPosition';
-import { getBasePath } from '../../../helpers';
+import { getBasePath } from '@eeacms/volto-energy-theme/helpers';
 import { BodyClass } from '@plone/volto/helpers';
 
 const messages = defineMessages({
