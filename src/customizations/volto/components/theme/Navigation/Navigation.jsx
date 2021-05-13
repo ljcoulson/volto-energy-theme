@@ -15,11 +15,11 @@ import rightKey from '@plone/volto/icons/right-key.svg';
 import backIcon from '@plone/volto/icons/back.svg';
 import { Icon } from '@plone/volto/components';
 import config from '@plone/volto/registry';
-import { getBasePath } from '../../../../../helpers';
+import { getBasePath } from '@eeacms/volto-energy-theme/helpers';
 
 import { getNavigation } from '@plone/volto/actions';
 
-import bgimage from '../../../../../components/theme/Navigation/home.jpg';
+import bgimage from '@eeacms/volto-energy-theme/components/theme/Navigation/home.jpg';
 
 const messages = defineMessages({
   closeMobileMenu: {

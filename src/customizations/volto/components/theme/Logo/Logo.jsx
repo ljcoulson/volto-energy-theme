@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Image } from 'semantic-ui-react';
 
-import LogoImage from '../../../../../components/theme/Logo/logo.svg';
-import LogoImagePage from '../../../../../components/theme/Logo/logo-page.svg';
+import LogoImage from '@eeacms/volto-energy-theme/components/theme/Logo/logo.svg';
+import LogoImagePage from '@eeacms/volto-energy-theme/components/theme/Logo/logo-page.svg';
 
 const messages = defineMessages({
   site: {

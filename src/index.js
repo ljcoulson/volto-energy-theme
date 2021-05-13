@@ -1,7 +1,8 @@
 import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 //import chartIcon from '@plone/volto/icons/world.svg';
-import TopicsView from './components/theme/View/TopicsView';
-import TopicsTabView from './components/theme/View/TopicsTabView';
+import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsView';
+import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
+import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
 // import FolderListingBlockView from 'volto-addons/FolderListing/BlockView';
 // import FolderListingBlockEdit from 'volto-addons/FolderListing/BlockEdit';
 
@@ -121,6 +122,14 @@ export default function applyConfig(config) {
       // objectlist: ObjectListWidget,
       // align: AlignBlockWidget,
       // attachedimage: AttachedImageWidget,
+    },
+  };
+
+  config.blocks.blocksConfig.listing = {
+    ...config.blocks.blocksConfig.listing,
+    templates: {
+      ...config.blocks.blocksConfig.listing.templates,
+      grid: { label: 'Grid', template: GridListingBlockTemplate },
     },
   };
 

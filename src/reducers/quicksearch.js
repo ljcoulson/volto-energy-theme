@@ -9,7 +9,7 @@ import config from '@plone/volto/registry';
 import {
   QUICK_RESET_SEARCH_CONTENT,
   QUICK_SEARCH_CONTENT,
-} from '../constants/ActionTypes';
+} from '@eeacms/volto-energy-theme/constants/ActionTypes';
 
 const initialState = {
   error: null,

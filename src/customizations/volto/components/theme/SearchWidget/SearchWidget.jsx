@@ -17,7 +17,7 @@ import zoomSVG from '@plone/volto/icons/zoom.svg';
 import {
   quickResetSearchContent,
   quickSearchContent,
-} from '../../../../../actions';
+} from '@eeacms/volto-energy-theme/actions';
 
 import { doesNodeContainClick } from 'semantic-ui-react/dist/commonjs/lib';
 //import URLUtils from '@plone/volto/components/manage/AnchorPlugin/utils/URLUtils';

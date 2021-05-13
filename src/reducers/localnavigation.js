@@ -1,4 +1,4 @@
-import { GET_LOCALNAVIGATION } from '../constants/ActionTypes';
+import { GET_LOCALNAVIGATION } from '@eeacms/volto-energy-theme/constants/ActionTypes';
 
 const initialState = {
   error: null,
