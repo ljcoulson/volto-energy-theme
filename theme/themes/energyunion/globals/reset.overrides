@@ -464,6 +464,10 @@ template {
   }
 }
 
-.ulist{
+.ulist {
 right: 0px !important;
+}
+
+.footer_logo {
+  left: 3em;
 }

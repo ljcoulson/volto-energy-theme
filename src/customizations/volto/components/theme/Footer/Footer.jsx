@@ -96,7 +96,7 @@ const Footer = (props) => (
             tablet={12}
             computer={6}
             largeScreen={6}
-            style={{ left: '3em' }}
+            className={cx({ footer_logo: !props.token })}
           >
             <div className="footerLogoWrapper">
               <img
