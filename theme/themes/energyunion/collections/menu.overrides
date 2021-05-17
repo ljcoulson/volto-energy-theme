@@ -213,6 +213,10 @@
         padding-top: 300px;
       }
 
+      @media screen and (max-height: 600px) {
+        padding-top: 100px !important;
+      }
+
       .menu-item {
         a {
           color: white;
@@ -272,6 +276,10 @@
           font-weight: 100;
         }
       }
+
+       @media screen and (max-height: 600px) {
+        padding-top: 100px !important;
+      }
     }
 
     .third-level {
@@ -294,6 +302,11 @@
           font-size: 1.2rem;
           font-weight: 100;
         }
+      }
+
+       @media screen and (max-height: 600px) {
+        padding-top: 100px !important;
+        overflow: auto;
       }
     }
   }

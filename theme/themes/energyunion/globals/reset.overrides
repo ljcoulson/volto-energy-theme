@@ -450,13 +450,24 @@ template {
 }
 
 .unlist {
+  min-width: max-content;
+  position: relative;
+  right: 50px;
   width: 100%;
   padding-left: 0;
   margin: 0;
   list-style-type: none;
 
   li {
-    display: inline-block;
+    display: inline;
     margin-right: 1rem;
   }
+}
+
+.ulist {
+right: 0px !important;
+}
+
+.footer_logo {
+  left: 3em;
 }

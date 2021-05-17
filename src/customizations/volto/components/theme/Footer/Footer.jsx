@@ -7,6 +7,7 @@ import React from 'react';
 import { Segment, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import cx from 'classnames';
 import eeaLogo from '@eeacms/volto-energy-theme/components/theme/Footer/ec.svg.png';
 import ecLogo from '@eeacms/volto-energy-theme/components/theme/Footer/eea.png';
 import { connect } from 'react-redux';
@@ -56,20 +57,47 @@ const Footer = (props) => (
               Find information on the EU and its Member States' progress in
               their 2030 targets on climate and energy.
             </p>
-            <ul className="unlist">
-              {!props.token && (
-                <li className="tools">
-                  <Anontools />
+            <div>
+              <ul
+                className={cx('unlist', {
+                  ulist: props.token,
+                })}
+              >
+                {!props.token && (
+                  <li className="tools">
+                    <Anontools />
+                  </li>
+                )}
+                <li>
+                  <Link className="item" to="/contact">
+                    <FormattedMessage id="contact" defaultMessage="Contact" />
+                  </Link>
                 </li>
-              )}
-              <li>
-                <Link className="item" to="/contact">
-                  <FormattedMessage id="contact" defaultMessage="Contact" />
-                </Link>
-              </li>
-            </ul>
+                <li>
+                  <Link className="item" to="/privacy_statement">
+                    <FormattedMessage
+                      id="privacy"
+                      defaultMessage="Privacy statement"
+                    />
+                  </Link>
+                </li>
+                <li>
+                  <Link className="item" to="/legal_notice">
+                    <FormattedMessage
+                      id="legal"
+                      defaultMessage="Legal notice"
+                    />
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </Grid.Column>
-          <Grid.Column tablet={12} computer={6} largeScreen={6}>
+          <Grid.Column
+            tablet={12}
+            computer={6}
+            largeScreen={6}
+            className={cx({ footer_logo: !props.token })}
+          >
             <div className="footerLogoWrapper">
               <img
                 style={{ width: '120px', marginRight: '2rem' }}
