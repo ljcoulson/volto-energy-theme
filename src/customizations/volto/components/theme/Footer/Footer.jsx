@@ -56,33 +56,43 @@ const Footer = (props) => (
               Find information on the EU and its Member States' progress in
               their 2030 targets on climate and energy.
             </p>
-            <ul className="unlist">
-              {!props.token && (
-                <li className="tools">
-                  <Anontools />
+            <div>
+              <ul className="unlist">
+                {!props.token && (
+                  <li className="tools">
+                    <Anontools />
+                  </li>
+                )}
+                <li>
+                  <Link className="item" to="/contact">
+                    <FormattedMessage id="contact" defaultMessage="Contact" />
+                  </Link>
                 </li>
-              )}
-              <li>
-                <Link className="item" to="/contact">
-                  <FormattedMessage id="contact" defaultMessage="Contact" />
-                </Link>
-              </li>
-              <li>
-                <Link className="item" to="/privacy_statement">
-                  <FormattedMessage
-                    id="privacy"
-                    defaultMessage="Privacy statement"
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link className="item" to="/legal_notice">
-                  <FormattedMessage id="legal" defaultMessage="Legal notice" />
-                </Link>
-              </li>
-            </ul>
+                <li>
+                  <Link className="item" to="/privacy_statement">
+                    <FormattedMessage
+                      id="privacy"
+                      defaultMessage="Privacy statement"
+                    />
+                  </Link>
+                </li>
+                <li>
+                  <Link className="item" to="/legal_notice">
+                    <FormattedMessage
+                      id="legal"
+                      defaultMessage="Legal notice"
+                    />
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </Grid.Column>
-          <Grid.Column tablet={12} computer={6} largeScreen={6}>
+          <Grid.Column
+            tablet={12}
+            computer={6}
+            largeScreen={6}
+            style={{ left: '3em' }}
+          >
             <div className="footerLogoWrapper">
               <img
                 style={{ width: '120px', marginRight: '2rem' }}
