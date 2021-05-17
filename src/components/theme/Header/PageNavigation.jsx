@@ -351,8 +351,14 @@ class PageNavigation extends Component {
                                               navItem.items &&
                                               navItem.items.length
                                                 ? flattenToAppURL(
-                                                    navItem.items[0]['@id'] ||
-                                                      navItem.items[0].url,
+                                                    navItem.items.find(
+                                                      (url) =>
+                                                        url.title === 'Main',
+                                                    )?.['@id'] ||
+                                                      navItem.items.find(
+                                                        (url) =>
+                                                          url.title === 'Main',
+                                                      )?.url,
                                                   )
                                                 : flattenToAppURL(
                                                     navItem['@id'] ||
@@ -520,7 +526,13 @@ class PageNavigation extends Component {
                   <Link
                     to={
                       item.items.length > 0
-                        ? getPath(item.items?.[0]['@id'] || item.items[0].url)
+                        ? getPath(
+                            item.items?.find((url) => url.title === 'Main')?.[
+                              '@id'
+                            ] ||
+                              item.items?.find((url) => url.title === 'Main')
+                                ?.url,
+                          )
                         : getPath(item['@id'] || item.url)
                     }
                     key={getPath(item['@id'] || item.url)}
