@@ -7,6 +7,7 @@ import React from 'react';
 import { Segment, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import cx from 'classnames';
 import eeaLogo from '@eeacms/volto-energy-theme/components/theme/Footer/ec.svg.png';
 import ecLogo from '@eeacms/volto-energy-theme/components/theme/Footer/eea.png';
 import { connect } from 'react-redux';
@@ -57,7 +58,11 @@ const Footer = (props) => (
               their 2030 targets on climate and energy.
             </p>
             <div>
-              <ul className="unlist">
+              <ul
+                className={cx('unlist', {
+                  ulist: props.token,
+                })}
+              >
                 {!props.token && (
                   <li className="tools">
                     <Anontools />

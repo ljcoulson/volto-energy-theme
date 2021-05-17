@@ -463,3 +463,7 @@ template {
     margin-right: 1rem;
   }
 }
+
+.ulist{
+right: 0px !important;
+}
