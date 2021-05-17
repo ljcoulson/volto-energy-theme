@@ -67,6 +67,19 @@ const Footer = (props) => (
                   <FormattedMessage id="contact" defaultMessage="Contact" />
                 </Link>
               </li>
+              <li>
+                <Link className="item" to="/privacy_statement">
+                  <FormattedMessage
+                    id="privacy"
+                    defaultMessage="Privacy statement"
+                  />
+                </Link>
+              </li>
+              <li>
+                <Link className="item" to="/legal_notice">
+                  <FormattedMessage id="legal" defaultMessage="Legal notice" />
+                </Link>
+              </li>
             </ul>
           </Grid.Column>
           <Grid.Column tablet={12} computer={6} largeScreen={6}>
