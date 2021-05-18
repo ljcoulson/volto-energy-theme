@@ -215,6 +215,7 @@
 
       @media screen and (max-height: 600px) {
         padding-top: 100px !important;
+        overflow: auto;
       }
 
       .menu-item {
@@ -279,6 +280,7 @@
 
        @media screen and (max-height: 600px) {
         padding-top: 100px !important;
+        overflow: auto;
       }
     }
 
