@@ -14,7 +14,6 @@ import { Icon } from '@plone/volto/components';
 import backIcon from '@plone/volto/icons/back.svg';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
-import rightCircle from '@plone/volto/icons/circle-right.svg';
 import MenuPosition from './MenuPosition';
 import { getBasePath } from '@eeacms/volto-energy-theme/helpers';
 import { BodyClass } from '@plone/volto/helpers';
@@ -330,21 +329,6 @@ class PageNavigation extends Component {
                                             navItem['@id'] || navItem.url
                                           }`}
                                         >
-                                          {flattenToAppURL(
-                                            this.props.pathname,
-                                          ).includes(
-                                            flattenToAppURL(
-                                              navItem['@id'] || navItem.url,
-                                            ),
-                                          ) && (
-                                            <span className="menuExpandedIndicator">
-                                              <Icon
-                                                name={rightCircle}
-                                                size="20px"
-                                              />
-                                            </span>
-                                          )}
-
                                           <Link
                                             key={navItem['@id'] || navItem.url}
                                             to={
@@ -389,21 +373,6 @@ class PageNavigation extends Component {
                                           country['@id'] || country.url
                                         }`}
                                       >
-                                        {flattenToAppURL(
-                                          this.props.pathname,
-                                        ).includes(
-                                          flattenToAppURL(
-                                            country['@id'] || country.url,
-                                          ),
-                                        ) && (
-                                          <span className="menuExpandedIndicator">
-                                            <Icon
-                                              name={rightCircle}
-                                              size="20px"
-                                            />
-                                          </span>
-                                        )}
-
                                         <Link
                                           key={country['@id'] || country.url}
                                           to={

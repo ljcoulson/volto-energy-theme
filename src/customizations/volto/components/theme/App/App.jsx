@@ -182,8 +182,8 @@ class App extends Component {
                   {!hideMenu && (
                     <Grid.Column
                       tablet={12}
-                      computer={3}
-                      largeScreen={3}
+                      computer={2}
+                      largeScreen={2}
                       className="menu-hamburger left-menu-wrapper"
                     >
                       <Header
@@ -198,8 +198,8 @@ class App extends Component {
 
                   <Grid.Column
                     tablet={12}
-                    computer={hideMenu ? 12 : 6}
-                    largeScreen={hideMenu ? 12 : 6}
+                    computer={hideMenu ? 12 : 8}
+                    largeScreen={hideMenu ? 12 : 8}
                   >
                     <main className="content-page">
                       <div className="editor-toolbar-wrapper" />
@@ -216,8 +216,8 @@ class App extends Component {
                   {!hideMenu && (
                     <Grid.Column
                       tablet={12}
-                      computer={3}
-                      largeScreen={3}
+                      computer={2}
+                      largeScreen={2}
                       className="inPageNavigation"
                     />
                   )}

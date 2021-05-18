@@ -69,6 +69,7 @@ export default function applyConfig(config) {
     ...env_destinations,
     'www.eea.europa.eu',
     'eionet.europa.eu',
+    '*.eionet.europa.eu',
     'www.eionet.europa.eu',
     'land.copernicus.eu',
   ];
