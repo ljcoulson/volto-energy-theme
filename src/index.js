@@ -60,13 +60,8 @@ export default function applyConfig(config) {
   //   dataBlocksConfig,
   // ].reduce((acc, apply) => apply(acc), voltoConfig);
 
-  const env_destinations = (process.env.ALLOWED_CORS_DESTINATIONS || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter((s) => s.length > 0);
   const allowed_cors_destinations = [
     ...(config.settings.allowed_cors_destinations || []),
-    ...env_destinations,
     'www.eea.europa.eu',
     'eionet.europa.eu',
     '*.eionet.europa.eu',
