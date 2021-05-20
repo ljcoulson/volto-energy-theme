@@ -64,8 +64,6 @@ export default function applyConfig(config) {
   const allowed_cors_destinations = [
     ...(config.settings.allowed_cors_destinations || []),
     'www.eea.europa.eu',
-    'eionet.europa.eu',
-    '*.eionet.europa.eu',
     'www.eionet.europa.eu',
     'land.copernicus.eu',
   ];
