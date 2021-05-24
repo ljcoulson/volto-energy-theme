@@ -3,6 +3,7 @@ import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsView';
 import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
 import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
+import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
 import reducers from '@eeacms/volto-energy-theme/reducers';
 // import FolderListingBlockView from 'volto-addons/FolderListing/BlockView';
 // import FolderListingBlockEdit from 'volto-addons/FolderListing/BlockEdit';
@@ -74,7 +75,12 @@ export default function applyConfig(config) {
       ...config.settings.apiExpanders,
       {
         match: '/',
-        GET_CONTENT: ['siblings', 'navigation', 'localnavigation'],
+        GET_CONTENT: [
+          'siblings',
+          'navigation',
+          'localnavigation',
+          'breadcrumbs',
+        ],
       },
     ],
     navDepth: 4,
@@ -125,6 +131,7 @@ export default function applyConfig(config) {
     templates: {
       ...config.blocks.blocksConfig.listing.templates,
       grid: { label: 'Grid', template: GridListingBlockTemplate },
+      list: { label: 'List', template: ListingBlockTemplate },
     },
   };
 
