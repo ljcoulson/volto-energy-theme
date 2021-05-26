@@ -2,8 +2,9 @@ import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 //import chartIcon from '@plone/volto/icons/world.svg';
 import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsView';
 import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
-import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
 import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
+import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
+import ListingView from '@eeacms/volto-energy-theme/components/theme/View/ListingView';
 import reducers from '@eeacms/volto-energy-theme/reducers';
 // import FolderListingBlockView from 'volto-addons/FolderListing/BlockView';
 // import FolderListingBlockEdit from 'volto-addons/FolderListing/BlockEdit';
@@ -97,6 +98,7 @@ export default function applyConfig(config) {
     },
     contentTypesViews: {
       ...config.views.contentTypesViews,
+      Collection: ListingView,
       // EmbeddedMap: MapView,
       // embeddedmap: MapView,
     },
@@ -126,14 +128,21 @@ export default function applyConfig(config) {
     },
   };
 
-  config.blocks.blocksConfig.listing = {
-    ...config.blocks.blocksConfig.listing,
-    templates: {
-      ...config.blocks.blocksConfig.listing.templates,
-      grid: { label: 'Grid', template: GridListingBlockTemplate },
-      list: { label: 'List', template: ListingBlockTemplate },
+  config.blocks.blocksConfig.listing.variations = [
+    ...config.blocks.blocksConfig.listing.variations,
+    {
+      id: 'grid',
+      isDefault: false,
+      title: 'Grid',
+      template: GridListingBlockTemplate,
     },
-  };
+    {
+      id: 'list',
+      isDefault: false,
+      title: 'List',
+      template: ListingBlockTemplate,
+    },
+  ];
 
   // config.blocks.blocksConfig.folder_contents_block = {
   //   id: 'folder_contents_block',
