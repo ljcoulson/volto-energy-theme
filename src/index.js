@@ -96,12 +96,6 @@ export default function applyConfig(config) {
       topics_view: TopicsView,
       topic_tab_view: TopicsTabView,
     },
-    contentTypesViews: {
-      ...config.views.contentTypesViews,
-      Collection: ListingView,
-      // EmbeddedMap: MapView,
-      // embeddedmap: MapView,
-    },
   };
 
   config.widgets = {

@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import { shallowEqual, useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+
 import PropTypes from 'prop-types';
 import { FormattedDate } from 'react-intl';
 import config from '@plone/volto/registry';
 import { Item, Breadcrumb } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { getBaseUrl } from '@plone/volto/helpers';
-import { getContent } from '@plone/volto/actions';
 
 const getPath = (url) => {
   return url
@@ -15,32 +13,7 @@ const getPath = (url) => {
 };
 
 const ListTemplate = (props) => {
-  const { block, data = {}, isEditMode } = props;
-
-  const sort_on =
-    (isEditMode ? props.sort_on : props.content?.sort_on) || 'created';
-
-  const items = isEditMode ? props.items : props.content?.items;
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    loadContent();
-  }, []);
-
-  const getRequestKey = () => {
-    return `col-content:${block}`;
-  };
-
-  const loadContent = () => {
-    const path = isEditMode ? props.pathname : data.collection_url;
-    if (!path) return;
-    const url = `${getBaseUrl(path)}`;
-    const options = {
-      metadata_fields: '_all',
-      is_search: 1,
-    };
-    dispatch(getContent(url, null, getRequestKey(), options));
-  };
+  const { items, sort_on = 'created' } = props;
 
   const searchItems = items?.sort(
     (a, b) => new Date(b[sort_on]) - new Date(a[sort_on]),

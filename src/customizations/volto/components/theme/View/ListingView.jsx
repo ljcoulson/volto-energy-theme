@@ -6,18 +6,13 @@
 import React from 'react';
 import { Helmet } from '@plone/volto/helpers';
 import { Container, Item } from 'semantic-ui-react';
-import { map, find } from 'lodash';
-import { compose } from 'redux';
-import { defineMessages, injectIntl } from 'react-intl';
+import { find } from 'lodash';
 //import BlockView from './BlockView';
 import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
 import {
   getBlocksFieldname,
   getBlocksLayoutFieldname,
-  hasBlocksData,
 } from '@plone/volto/helpers';
-import { getBaseUrl } from '@plone/volto/helpers';
-import config from '@plone/volto/registry';
 
 /**
  * List view component class.
@@ -26,23 +21,11 @@ import config from '@plone/volto/registry';
  * @returns {string} Markup of the component.
  */
 
-const messages = defineMessages({
-  unknownBlock: {
-    id: 'Unknown Block',
-    defaultMessage: 'Unknown Block {block}',
-  },
-});
-
 const ListingView = (props) => {
   const { content } = props;
-  const intl = props.intl;
+
   const blocksFieldname = getBlocksFieldname(content);
   const blocksLayoutFieldname = getBlocksLayoutFieldname(content);
-
-  let url = content['@id']
-    .replace(config.settings.internalApiPath, '')
-    .replace(config.settings.apiPath, '');
-  url = getBaseUrl(url);
 
   const getListingBlock = () => {
     return find(
@@ -53,11 +36,7 @@ const ListingView = (props) => {
 
   const listingBlockid = getListingBlock();
 
-  const Block =
-    config.blocks.blocksConfig[
-      content[blocksFieldname]?.[listingBlockid]?.['@type']
-    ]?.['view'] || null;
-
+  const listingBlockProps = content[blocksFieldname]?.[listingBlockid] || {};
   return (
     <Container id="page-search" className="">
       <Helmet title={content.title} />
@@ -83,26 +62,14 @@ const ListingView = (props) => {
                 {content.description}
               </p>
             )}
-            {Block !== null ? (
-              <>
-                <Block
-                  key={`block-${listingBlockid}`}
-                  blockID={listingBlockid}
-                  properties={content}
-                  data={content[blocksFieldname][listingBlockid]}
-                />
-              </>
-            ) : (
-              <div key={`blocktype-${listingBlockid}`}>
-                {intl.formatMessage(messages.unknownBlock, {
-                  block: content[blocksFieldname]?.[listingBlockid]?.['@type'],
-                })}
-              </div>
-            )}
+            <ListingBlockTemplate
+              items={content.items}
+              {...listingBlockProps}
+            />
           </Item.Group>
         </div>
       </section>
     </Container>
   );
 };
-export default compose(injectIntl)(ListingView);
+export default ListingView;
