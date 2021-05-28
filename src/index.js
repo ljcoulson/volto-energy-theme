@@ -4,7 +4,7 @@ import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsV
 import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
 import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
 import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
-import ListingView from '@eeacms/volto-energy-theme/components/theme/View/ListingView';
+import CollectionView from '@eeacms/volto-energy-theme/components/theme/View/CollectionView';
 import reducers from '@eeacms/volto-energy-theme/reducers';
 // import FolderListingBlockView from 'volto-addons/FolderListing/BlockView';
 // import FolderListingBlockEdit from 'volto-addons/FolderListing/BlockEdit';
@@ -95,6 +95,10 @@ export default function applyConfig(config) {
       ...config.views.layoutViews,
       topics_view: TopicsView,
       topic_tab_view: TopicsTabView,
+    },
+    contentTypesViews: {
+      ...config.views.contentTypesViews,
+      Collection: CollectionView,
     },
   };
 

@@ -6,13 +6,17 @@
 import React from 'react';
 import { Helmet } from '@plone/volto/helpers';
 import { Container, Item } from 'semantic-ui-react';
+
 import { find } from 'lodash';
-//import BlockView from './BlockView';
-import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
+
 import {
   getBlocksFieldname,
   getBlocksLayoutFieldname,
 } from '@plone/volto/helpers';
+import config from '@plone/volto/registry';
+import { getBaseUrl } from '@plone/volto/helpers';
+import { ListingBlockBody } from '@plone/volto/components';
+import cx from 'classnames';
 
 /**
  * List view component class.
@@ -21,9 +25,14 @@ import {
  * @returns {string} Markup of the component.
  */
 
-const ListingView = (props) => {
-  const { content } = props;
+const CollectionView = (props) => {
+  const { content, location } = props;
 
+  let path = content['@id']
+    .replace(config.settings.internalApiPath, '')
+    .replace(config.settings.apiPath, '');
+
+  path = getBaseUrl(path);
   const blocksFieldname = getBlocksFieldname(content);
   const blocksLayoutFieldname = getBlocksLayoutFieldname(content);
 
@@ -37,8 +46,13 @@ const ListingView = (props) => {
   const listingBlockid = getListingBlock();
 
   const listingBlockProps = content[blocksFieldname]?.[listingBlockid] || {};
+
+  const listingBlockVariation = config.blocks.blocksConfig.listing.variations.find(
+    (template) => template.id === listingBlockProps.variation,
+  );
+
   return (
-    <Container id="page-search" className="">
+    <Container>
       <Helmet title={content.title} />
       <section id="content-core">
         <div className="search-listing item-listing">
@@ -62,14 +76,19 @@ const ListingView = (props) => {
                 {content.description}
               </p>
             )}
-            <ListingBlockTemplate
-              items={content.items}
-              {...listingBlockProps}
-            />
+            <div className={cx('block listing', listingBlockProps.variation)}>
+              <ListingBlockBody
+                properties={content}
+                path={path ?? location.pathname}
+                data={listingBlockProps}
+                isEditMode={false}
+                variation={listingBlockVariation}
+              />
+            </div>
           </Item.Group>
         </div>
       </section>
     </Container>
   );
 };
-export default ListingView;
+export default CollectionView;
