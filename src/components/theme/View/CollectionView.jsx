@@ -3,9 +3,10 @@
  * @module components/theme/View/CollectionView
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from '@plone/volto/helpers';
 import { Container, Item } from 'semantic-ui-react';
+import Filter from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/Filter';
 
 import { find } from 'lodash';
 
@@ -25,8 +26,17 @@ import cx from 'classnames';
  * @returns {string} Markup of the component.
  */
 
+// const filterResults = (results = [], filterValue, facetFilter) => {
+//   if (!(filterValue && facetFilter)) return results;
+
+//   return results.filter((obj) =>
+//     (obj[facetFilter.token] || []).indexOf(filterValue) > -1 ? true : false,
+//   );
+// };
+
 const CollectionView = (props) => {
   const { content, location } = props;
+  const [activeFilter, setActiveFilter] = useState('');
 
   let path = content['@id']
     .replace(config.settings.internalApiPath, '')
@@ -41,6 +51,10 @@ const CollectionView = (props) => {
       content[blocksLayoutFieldname].items,
       (block) => content[blocksFieldname]?.[block]?.['@type'] === 'listing',
     );
+  };
+
+  const handleSelectFilter = (ev, { name }) => {
+    setActiveFilter(name);
   };
 
   const listingBlockid = getListingBlock();
@@ -84,6 +98,16 @@ const CollectionView = (props) => {
                 isEditMode={false}
                 variation={listingBlockVariation}
               />
+              {content.filter ? (
+                <Filter
+                  handleSelectFilter={handleSelectFilter}
+                  facetFilter={content.filter}
+                  selectedValue={activeFilter}
+                  results={content.items}
+                />
+              ) : (
+                ''
+              )}
             </div>
           </Item.Group>
         </div>

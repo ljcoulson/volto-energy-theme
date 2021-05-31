@@ -18,6 +18,7 @@ import {
   GET_LOCALNAVIGATION,
   QUICK_RESET_SEARCH_CONTENT,
   QUICK_SEARCH_CONTENT,
+  GET_INDEX_VALUES,
 } from '../constants/ActionTypes';
 
 import { compact, concat, isArray, join, map, pickBy, toPairs } from 'lodash';
@@ -45,6 +46,17 @@ export function setFolderHeader(payload) {
     };
   }
   return;
+}
+
+export function getIndexValues(name) {
+  return {
+    type: GET_INDEX_VALUES,
+    request: {
+      op: 'post',
+      path: '/@index-values',
+      data: { name },
+    },
+  };
 }
 
 export function getLocalnavigation(folder) {
