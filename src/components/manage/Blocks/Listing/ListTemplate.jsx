@@ -6,7 +6,7 @@ import config from '@plone/volto/registry';
 import { Item, Breadcrumb } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-const composePath = (url) => {
+const getPath = (url) => {
   return url
     .replace(config.settings.apiPath, '')
     .replace(config.settings.internalApiPath, '');
@@ -51,30 +51,37 @@ const ListTemplate = (props) => {
                   </div>
                   <div>
                     <span className="searchLabel black">Location:</span>{' '}
-                    {item['@components'] &&
-                      item['@components']?.breadcrumbs?.['@id'] && (
-                        <Breadcrumb style={{ display: 'inline' }}>
-                          {item['@components'].breadcrumbs?.['@id']
-                            .split('/')
-                            .slice(4, 7)
+                    {item['@components'] && item['@components']?.breadcrumbs && (
+                      <Breadcrumb style={{ display: 'inline' }}>
+                        {item['@components'].breadcrumbs.items &&
+                          item['@components'].breadcrumbs.items
+                            .slice(0, -1)
                             .map((item, index, items) => [
                               index < items.length - 1 ? (
                                 <Breadcrumb.Section>
-                                  <Link key={item} to={composePath(item)}>
-                                    {item[0].toUpperCase() + item.substring(1)}
+                                  <Link
+                                    key={item.url}
+                                    to={getPath(item['@id'])}
+                                  >
+                                    {item.title}
                                   </Link>
-                                  <Breadcrumb.Divider key={`divider-${item}`} />
+                                  <Breadcrumb.Divider
+                                    key={`divider-${item.url}`}
+                                  />
                                 </Breadcrumb.Section>
                               ) : (
                                 <Breadcrumb.Section>
-                                  <Link key={item} to={composePath(item)}>
-                                    {item[0].toUpperCase() + item.substring(1)}
+                                  <Link
+                                    key={item.url}
+                                    to={getPath(item['@id'])}
+                                  >
+                                    {item.title}
                                   </Link>
                                 </Breadcrumb.Section>
                               ),
                             ])}
-                        </Breadcrumb>
-                      )}
+                      </Breadcrumb>
+                    )}
                   </div>
                 </div>
               </Item.Description>

@@ -83,6 +83,10 @@ export default function applyConfig(config) {
           'breadcrumbs',
         ],
       },
+      {
+        match: '',
+        GET_QUERYSTRING_RESULTS: ['breadcrumbs'],
+      },
     ],
     navDepth: 4,
     allowed_cors_destinations,
