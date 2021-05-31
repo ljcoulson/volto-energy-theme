@@ -2,7 +2,9 @@ import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 //import chartIcon from '@plone/volto/icons/world.svg';
 import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsView';
 import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
+import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
 import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
+import CollectionView from '@eeacms/volto-energy-theme/components/theme/View/CollectionView';
 import reducers from '@eeacms/volto-energy-theme/reducers';
 // import FolderListingBlockView from 'volto-addons/FolderListing/BlockView';
 // import FolderListingBlockEdit from 'volto-addons/FolderListing/BlockEdit';
@@ -74,7 +76,16 @@ export default function applyConfig(config) {
       ...config.settings.apiExpanders,
       {
         match: '/',
-        GET_CONTENT: ['siblings', 'navigation', 'localnavigation'],
+        GET_CONTENT: [
+          'siblings',
+          'navigation',
+          'localnavigation',
+          'breadcrumbs',
+        ],
+      },
+      {
+        match: '',
+        GET_QUERYSTRING_RESULTS: ['breadcrumbs'],
       },
     ],
     navDepth: 4,
@@ -91,8 +102,7 @@ export default function applyConfig(config) {
     },
     contentTypesViews: {
       ...config.views.contentTypesViews,
-      // EmbeddedMap: MapView,
-      // embeddedmap: MapView,
+      Collection: CollectionView,
     },
   };
 
@@ -120,13 +130,21 @@ export default function applyConfig(config) {
     },
   };
 
-  config.blocks.blocksConfig.listing = {
-    ...config.blocks.blocksConfig.listing,
-    templates: {
-      ...config.blocks.blocksConfig.listing.templates,
-      grid: { label: 'Grid', template: GridListingBlockTemplate },
+  config.blocks.blocksConfig.listing.variations = [
+    ...config.blocks.blocksConfig.listing.variations,
+    {
+      id: 'grid',
+      isDefault: false,
+      title: 'Grid',
+      template: GridListingBlockTemplate,
     },
-  };
+    {
+      id: 'list',
+      isDefault: false,
+      title: 'List',
+      template: ListingBlockTemplate,
+    },
+  ];
 
   // config.blocks.blocksConfig.folder_contents_block = {
   //   id: 'folder_contents_block',
