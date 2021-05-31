@@ -50,9 +50,6 @@ const ListTemplate = (props) => {
                     />
                   </div>
                   <div>
-                    {console.log(
-                      item['@components'].breadcrumbs?.['@id'].split('/'),
-                    )}
                     <span className="searchLabel black">Location:</span>{' '}
                     {item['@components'] &&
                       item['@components']?.breadcrumbs?.['@id'] && (
