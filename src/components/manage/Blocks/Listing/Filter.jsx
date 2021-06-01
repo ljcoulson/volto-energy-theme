@@ -23,7 +23,7 @@ class Filter extends Component {
     const results = this.props.results;
     const facetFilter = this.props.facetFilter;
 
-    if (!results) return [];
+    if (!results || results.length === 0) return [];
 
     const res = {};
     filters.forEach((f) => {

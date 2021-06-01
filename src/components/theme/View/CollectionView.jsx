@@ -3,9 +3,10 @@
  * @module components/theme/View/CollectionView
  */
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from '@plone/volto/helpers';
 import { Container, Item } from 'semantic-ui-react';
+import { useSelector, useDispatch } from 'react-redux';
 import Filter from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/Filter';
 
 import { find } from 'lodash';
@@ -16,7 +17,8 @@ import {
 } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 import { getBaseUrl } from '@plone/volto/helpers';
-import { ListingBlockBody } from '@plone/volto/components';
+import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
+import { getContentWithData } from '@eeacms/volto-energy-theme/actions';
 import cx from 'classnames';
 
 /**
@@ -35,14 +37,15 @@ import cx from 'classnames';
 // };
 
 const CollectionView = (props) => {
-  const { content, location } = props;
+  const { content } = props;
+  const dispatch = useDispatch();
   const [activeFilter, setActiveFilter] = useState('');
 
   let path = content['@id']
     .replace(config.settings.internalApiPath, '')
     .replace(config.settings.apiPath, '');
-
   path = getBaseUrl(path);
+
   const blocksFieldname = getBlocksFieldname(content);
   const blocksLayoutFieldname = getBlocksLayoutFieldname(content);
 
@@ -53,17 +56,27 @@ const CollectionView = (props) => {
     );
   };
 
+  const listingBlockid = getListingBlock();
+
+  const listingBlockItems = useSelector((state) => state.content.subrequests);
+
+  useEffect(() => {
+    //This is only done to get full expanded content along with metadata fields which is,
+    // not possible with listing block's @querystring-search default action
+    // which intern force to use two content items :(, this needs to be refactored
+    const options = {
+      metadata_fields: '_all',
+      is_search: 1,
+      fullobjects: true,
+    };
+    dispatch(getContentWithData(path, null, listingBlockid, options));
+  }, []);
+
   const handleSelectFilter = (ev, { name }) => {
     setActiveFilter(name);
   };
 
-  const listingBlockid = getListingBlock();
-
   const listingBlockProps = content[blocksFieldname]?.[listingBlockid] || {};
-
-  const listingBlockVariation = config.blocks.blocksConfig.listing.variations.find(
-    (template) => template.id === listingBlockProps.variation,
-  );
 
   return (
     <Container>
@@ -91,22 +104,26 @@ const CollectionView = (props) => {
               </p>
             )}
             <div className={cx('block listing', listingBlockProps.variation)}>
-              <ListingBlockBody
-                properties={content}
-                path={path ?? location.pathname}
-                data={listingBlockProps}
-                isEditMode={false}
-                variation={listingBlockVariation}
-              />
-              {content.filter ? (
-                <Filter
-                  handleSelectFilter={handleSelectFilter}
-                  facetFilter={content.filter}
-                  selectedValue={activeFilter}
-                  results={content.items}
-                />
+              {listingBlockItems ? (
+                <>
+                  <ListingBlockTemplate
+                    items={listingBlockItems[listingBlockid]?.data?.items}
+                    {...listingBlockProps}
+                    isEditMode={false}
+                  />
+                  {content.filter ? (
+                    <Filter
+                      handleSelectFilter={handleSelectFilter}
+                      facetFilter={content.filter}
+                      selectedValue={activeFilter}
+                      results={listingBlockItems[listingBlockid]?.data?.items}
+                    />
+                  ) : (
+                    ''
+                  )}
+                </>
               ) : (
-                ''
+                <div>No results Found</div>
               )}
             </div>
           </Item.Group>
