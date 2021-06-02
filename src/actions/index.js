@@ -21,6 +21,8 @@ import {
   GET_INDEX_VALUES,
 } from '../constants/ActionTypes';
 
+import { GET_CONTENT } from '@plone/volto/constants/ActionTypes';
+
 import { compact, concat, isArray, join, map, pickBy, toPairs } from 'lodash';
 
 // export { getChartDataFromVisualization } from 'volto-blocks/actions'
@@ -137,5 +139,30 @@ export function quickResetSearchContent(subrequest = null) {
   return {
     type: QUICK_RESET_SEARCH_CONTENT,
     subrequest,
+  };
+}
+
+export function getContentWithData(
+  url,
+  version = null,
+  subrequest = null,
+  data = {},
+) {
+  let qs = Object.keys(data)
+    .map(function (key) {
+      return key + '=' + data[key];
+    })
+    .join('&');
+
+  return {
+    type: GET_CONTENT,
+    subrequest,
+    request: {
+      op: 'get',
+      path: `${url}${version ? `/@history/${version}` : ''}${
+        qs ? `?${qs}` : ''
+      }`,
+      data,
+    },
   };
 }

@@ -77,15 +77,11 @@ export default function applyConfig(config) {
       {
         match: '/',
         GET_CONTENT: [
+          'breadcrumbs',
           'siblings',
           'navigation',
           'localnavigation',
-          'breadcrumbs',
         ],
-      },
-      {
-        match: '',
-        GET_QUERYSTRING_RESULTS: ['breadcrumbs'],
       },
     ],
     navDepth: 4,

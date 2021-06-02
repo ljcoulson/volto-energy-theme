@@ -23,11 +23,14 @@ const ListTemplate = (props) => {
     <div>
       {searchItems &&
         searchItems.map((item, index) => (
-          <Item className="search-item" key={item['@id']}>
+          <Item className="search-item" key={item['@id'] || item.url}>
             <Item.Content>
               <Item.Description>
                 <div className="descriptionBody">
-                  <Link style={{ color: '#444' }} to={item['@id'] || item.url}>
+                  <Link
+                    style={{ color: '#444' }}
+                    to={getPath(item['@id'] || item.url)}
+                  >
                     <h4 className="item-description">
                       {item.description || item.title || item.Title}
                     </h4>
@@ -50,37 +53,42 @@ const ListTemplate = (props) => {
                     />
                   </div>
                   <div>
-                    <span className="searchLabel black">Location:</span>{' '}
-                    {item['@components'] && item['@components']?.breadcrumbs && (
-                      <Breadcrumb style={{ display: 'inline' }}>
-                        {item['@components'].breadcrumbs.items &&
-                          item['@components'].breadcrumbs.items
-                            .slice(0, -1)
-                            .map((item, index, items) => [
-                              index < items.length - 1 ? (
-                                <Breadcrumb.Section>
-                                  <Link
-                                    key={item.url}
-                                    to={getPath(item['@id'])}
-                                  >
-                                    {item.title}
-                                  </Link>
-                                  <Breadcrumb.Divider
-                                    key={`divider-${item.url}`}
-                                  />
-                                </Breadcrumb.Section>
-                              ) : (
-                                <Breadcrumb.Section>
-                                  <Link
-                                    key={item.url}
-                                    to={getPath(item['@id'])}
-                                  >
-                                    {item.title}
-                                  </Link>
-                                </Breadcrumb.Section>
-                              ),
-                            ])}
-                      </Breadcrumb>
+                    {item['@components']?.breadcrumbs?.items && (
+                      <>
+                        <span className="searchLabel black">Location:</span>{' '}
+                        {item['@components'] &&
+                          item['@components']?.breadcrumbs && (
+                            <Breadcrumb style={{ display: 'inline' }}>
+                              {item['@components'].breadcrumbs.items &&
+                                item['@components'].breadcrumbs.items
+                                  .slice(0, -1)
+                                  .map((item, index, items) => [
+                                    index < items.length - 1 ? (
+                                      <Breadcrumb.Section>
+                                        <Link
+                                          key={item.url}
+                                          to={getPath(item['@id'])}
+                                        >
+                                          {item.title}
+                                        </Link>
+                                        <Breadcrumb.Divider
+                                          key={`divider-${item.url}`}
+                                        />
+                                      </Breadcrumb.Section>
+                                    ) : (
+                                      <Breadcrumb.Section>
+                                        <Link
+                                          key={item.url}
+                                          to={getPath(item['@id'])}
+                                        >
+                                          {item.title}
+                                        </Link>
+                                      </Breadcrumb.Section>
+                                    ),
+                                  ])}
+                            </Breadcrumb>
+                          )}
+                      </>
                     )}
                   </div>
                 </div>
