@@ -405,9 +405,6 @@ body.homepage {
     justify-content: space-between;
     padding-right: 6rem;
 
-    a {
-      pointer-events: none;
-    }
 
     .ui.form .searchbox.field {
       position: relative;
