@@ -99,18 +99,30 @@ const Footer = (props) => (
             className={cx({ footer_logo: !props.token })}
           >
             <div className="footerLogoWrapper">
-              <img
-                style={{ width: '120px', marginRight: '2rem' }}
-                className="footerLogo"
-                src={eeaLogo}
-                alt=""
-              />
-              <img
-                style={{ width: '160px' }}
-                className="footerLogo"
-                src={ecLogo}
-                alt=""
-              />
+              <a
+                href="https://www.ec.europa.eu/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  style={{ width: '120px', marginRight: '2rem' }}
+                  className="footerLogo"
+                  src={eeaLogo}
+                  alt=""
+                />
+              </a>
+              <a
+                href="https://www.eea.europa.eu/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  style={{ width: '160px' }}
+                  className="footerLogo"
+                  src={ecLogo}
+                  alt=""
+                />
+              </a>
             </div>
           </Grid.Column>
         </Grid>

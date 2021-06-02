@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Helmet } from '@plone/volto/helpers';
-import { Container, Item } from 'semantic-ui-react';
+import { Container, Item, Placeholder } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
 import Filter from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/Filter';
 
@@ -28,18 +28,19 @@ import cx from 'classnames';
  * @returns {string} Markup of the component.
  */
 
-// const filterResults = (results = [], filterValue, facetFilter) => {
-//   if (!(filterValue && facetFilter)) return results;
+const filterResults = (results = [], filterValue, facetFilter) => {
+  if (!(filterValue && facetFilter)) return results;
 
-//   return results.filter((obj) =>
-//     (obj[facetFilter.token] || []).indexOf(filterValue) > -1 ? true : false,
-//   );
-// };
+  return results.filter((obj) =>
+    (obj[facetFilter.token] || []).indexOf(filterValue) > -1 ? true : false,
+  );
+};
 
 const CollectionView = (props) => {
   const { content } = props;
   const dispatch = useDispatch();
   const [activeFilter, setActiveFilter] = useState('');
+  const [filteredResults, setFilteredResults] = useState([]);
 
   let path = content['@id']
     .replace(config.settings.internalApiPath, '')
@@ -59,6 +60,7 @@ const CollectionView = (props) => {
   const listingBlockid = getListingBlock();
 
   const listingBlockItems = useSelector((state) => state.content.subrequests);
+
   const items = listingBlockItems[listingBlockid]?.data?.items;
 
   useEffect(() => {
@@ -74,7 +76,11 @@ const CollectionView = (props) => {
   }, [dispatch, path, listingBlockid]);
 
   const handleSelectFilter = (ev, { name }) => {
-    setActiveFilter(name);
+    const filtered = filterResults(items, name, content.filter);
+    if (filtered.length > 0) {
+      setFilteredResults(filtered.slice(0, 15));
+      setActiveFilter(name);
+    }
   };
 
   const listingBlockProps = content[blocksFieldname]?.[listingBlockid] || {};
@@ -108,7 +114,7 @@ const CollectionView = (props) => {
               {items ? (
                 <>
                   <ListingBlockTemplate
-                    items={items}
+                    items={filteredResults.length > 0 ? filteredResults : items}
                     {...listingBlockProps}
                     isEditMode={false}
                   />
@@ -117,14 +123,26 @@ const CollectionView = (props) => {
                       handleSelectFilter={handleSelectFilter}
                       facetFilter={content.filter}
                       selectedValue={activeFilter}
-                      results={listingBlockItems[listingBlockid]?.data?.items}
+                      results={items}
                     />
                   ) : (
                     ''
                   )}
                 </>
               ) : (
-                <div>No results Found</div>
+                <div>
+                  <p>No results.</p>
+                  <Placeholder>
+                    <Placeholder.Header image>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Header>
+                    <Placeholder.Paragraph>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Paragraph>
+                  </Placeholder>
+                </div>
               )}
             </div>
           </Item.Group>

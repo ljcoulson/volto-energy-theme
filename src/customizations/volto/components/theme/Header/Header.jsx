@@ -47,18 +47,30 @@ class Header extends Component {
                   style={{ marginRight: '2rem' }}
                   className="footerLogoWrapper"
                 >
-                  <img
-                    style={{ width: '150px', marginRight: '2rem' }}
-                    className="footerLogo"
-                    src={ecLogo}
-                    alt=""
-                  />
-                  <img
-                    style={{ width: '110px' }}
-                    className="footerLogo"
-                    src={eeaLogo}
-                    alt=""
-                  />
+                  <a
+                    href="https://www.ec.europa.eu/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      style={{ width: '150px', marginRight: '2rem' }}
+                      className="footerLogo"
+                      src={ecLogo}
+                      alt=""
+                    />
+                  </a>
+                  <a
+                    href="https://www.eea.europa.eu/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      style={{ width: '110px' }}
+                      className="footerLogo"
+                      src={eeaLogo}
+                      alt=""
+                    />
+                  </a>
                 </div>
 
                 <div className="searchbar">
