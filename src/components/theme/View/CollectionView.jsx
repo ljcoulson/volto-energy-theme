@@ -3,7 +3,7 @@
  * @module components/theme/View/CollectionView
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from '@plone/volto/helpers';
 import { Container, Item } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -59,6 +59,7 @@ const CollectionView = (props) => {
   const listingBlockid = getListingBlock();
 
   const listingBlockItems = useSelector((state) => state.content.subrequests);
+  const items = listingBlockItems[listingBlockid]?.data?.items;
 
   useEffect(() => {
     //This is only done to get full expanded content along with metadata fields which is,
@@ -70,7 +71,7 @@ const CollectionView = (props) => {
       fullobjects: true,
     };
     dispatch(getContentWithData(path, null, listingBlockid, options));
-  }, []);
+  }, [dispatch, path, listingBlockid]);
 
   const handleSelectFilter = (ev, { name }) => {
     setActiveFilter(name);
@@ -104,10 +105,10 @@ const CollectionView = (props) => {
               </p>
             )}
             <div className={cx('block listing', listingBlockProps.variation)}>
-              {listingBlockItems ? (
+              {items ? (
                 <>
                   <ListingBlockTemplate
-                    items={listingBlockItems[listingBlockid]?.data?.items}
+                    items={items}
                     {...listingBlockProps}
                     isEditMode={false}
                   />
