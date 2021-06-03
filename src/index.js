@@ -95,10 +95,11 @@ export default function applyConfig(config) {
       ...config.views.layoutViews,
       topics_view: TopicsView,
       topic_tab_view: TopicsTabView,
+      listing_view: CollectionView,
     },
     contentTypesViews: {
       ...config.views.contentTypesViews,
-      Collection: CollectionView,
+      //Collection: CollectionView,
     },
   };
 
@@ -139,6 +140,15 @@ export default function applyConfig(config) {
       isDefault: false,
       title: 'List',
       template: ListingBlockTemplate,
+      schemaEnhancer: ({ formData, schema, intl }) => {
+        schema.properties.metadata_fields = {
+          type: 'array',
+          title: 'Metadata fields',
+          choices: [['_all', '_all']],
+        };
+        schema.fieldsets[0].fields.push('metadata_fields');
+        return schema;
+      },
     },
   ];
 
