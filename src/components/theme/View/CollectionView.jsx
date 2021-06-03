@@ -112,7 +112,7 @@ const CollectionView = (props) => {
               </p>
             )}
             <div className={cx('block listing', listingBlockProps.variation)}>
-              {items ? (
+              {items && items.length > 0 ? (
                 <>
                   <ListingBlockTemplate
                     items={filteredResults.length > 0 ? filteredResults : items}
