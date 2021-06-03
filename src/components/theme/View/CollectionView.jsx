@@ -75,7 +75,8 @@ const CollectionView = (props) => {
       fullobjects: true,
     };
     dispatch(getContentWithData(path, null, listingBlockid, options));
-  }, [dispatch, path, listingBlockid, listingBlockProps]);
+    /* eslint-disable react-hooks/exhaustive-deps */
+  }, [listingBlockProps]);
 
   const handleSelectFilter = (ev, { name }) => {
     const filtered = filterResults(items, name, content.filter);

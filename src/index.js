@@ -95,11 +95,11 @@ export default function applyConfig(config) {
       ...config.views.layoutViews,
       topics_view: TopicsView,
       topic_tab_view: TopicsTabView,
-      listing_view: CollectionView,
+      //listing_view: CollectionView,
     },
     contentTypesViews: {
       ...config.views.contentTypesViews,
-      //Collection: CollectionView,
+      Collection: CollectionView,
     },
   };
 
@@ -119,6 +119,7 @@ export default function applyConfig(config) {
     },
     widget: {
       ...config.widgets.widget,
+      //querystring: QuerystringWidget,
       // sidebar: [TemplatingToolbarWidget],
       // object_by_path: PickObject,
       // objectlist: ObjectListWidget,
@@ -127,30 +128,34 @@ export default function applyConfig(config) {
     },
   };
 
-  config.blocks.blocksConfig.listing.variations = [
-    ...config.blocks.blocksConfig.listing.variations,
-    {
-      id: 'grid',
-      isDefault: false,
-      title: 'Grid',
-      template: GridListingBlockTemplate,
-    },
-    {
-      id: 'list',
-      isDefault: false,
-      title: 'List',
-      template: ListingBlockTemplate,
-      schemaEnhancer: ({ formData, schema, intl }) => {
-        schema.properties.metadata_fields = {
-          type: 'array',
-          title: 'Metadata fields',
-          choices: [['_all', '_all']],
-        };
-        schema.fieldsets[0].fields.push('metadata_fields');
-        return schema;
+  config.blocks.blocksConfig.listing = {
+    ...config.blocks.blocksConfig.listing,
+    showLinkMore: true,
+    variations: [
+      ...config.blocks.blocksConfig.listing.variations,
+      {
+        id: 'grid',
+        isDefault: false,
+        title: 'Grid',
+        template: GridListingBlockTemplate,
       },
-    },
-  ];
+      {
+        id: 'list',
+        isDefault: false,
+        title: 'List',
+        template: ListingBlockTemplate,
+        schemaEnhancer: ({ formData, schema, intl }) => {
+          schema.properties.metadata_fields = {
+            widget: 'array',
+            title: 'Metadata fields',
+            choices: [['_all', '_all']],
+          };
+          schema.fieldsets[0].fields.push('metadata_fields');
+          return schema;
+        },
+      },
+    ],
+  };
 
   // config.blocks.blocksConfig.folder_contents_block = {
   //   id: 'folder_contents_block',
