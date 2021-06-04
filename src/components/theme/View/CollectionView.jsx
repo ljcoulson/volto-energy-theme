@@ -72,7 +72,7 @@ const CollectionView = (props) => {
     const options = {
       metadata_fields: '_all',
       is_search: 1,
-      fullobjects: true,
+      fullobjects: 1,
     };
     dispatch(getContentWithData(path, null, listingBlockid, options));
     /* eslint-disable react-hooks/exhaustive-deps */

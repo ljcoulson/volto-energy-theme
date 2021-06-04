@@ -3,6 +3,7 @@ import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsView';
 import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
 import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
+import MetaFieldWidget from '@eeacms/volto-energy-theme/components/manage/Widgets/MetaField';
 import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
 import CollectionView from '@eeacms/volto-energy-theme/components/theme/View/CollectionView';
 import reducers from '@eeacms/volto-energy-theme/reducers';
@@ -119,7 +120,7 @@ export default function applyConfig(config) {
     },
     widget: {
       ...config.widgets.widget,
-      //querystring: QuerystringWidget,
+      vocab_select: MetaFieldWidget,
       // sidebar: [TemplatingToolbarWidget],
       // object_by_path: PickObject,
       // objectlist: ObjectListWidget,
@@ -146,9 +147,9 @@ export default function applyConfig(config) {
         template: ListingBlockTemplate,
         schemaEnhancer: ({ formData, schema, intl }) => {
           schema.properties.metadata_fields = {
-            widget: 'array',
-            title: 'Metadata fields',
-            choices: [['_all', '_all']],
+            title: 'Metadata field',
+            widget: 'vocab_select',
+            vocabulary: { '@id': 'plone.app.vocabularies.MetadataFields' },
           };
           schema.fieldsets[0].fields.push('metadata_fields');
           return schema;
