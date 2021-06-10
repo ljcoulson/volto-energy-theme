@@ -63,6 +63,8 @@ const CollectionView = (props) => {
 
   const items = listingBlockItems[listingBlockid]?.data?.items;
 
+  const listingBlockProps = content[blocksFieldname]?.[listingBlockid] || {};
+
   useEffect(() => {
     //This is only done to get full expanded content along with metadata fields which is,
     // not possible with listing block's @querystring-search default action
@@ -70,10 +72,11 @@ const CollectionView = (props) => {
     const options = {
       metadata_fields: '_all',
       is_search: 1,
-      fullobjects: true,
+      fullobjects: 1,
     };
     dispatch(getContentWithData(path, null, listingBlockid, options));
-  }, [dispatch, path, listingBlockid]);
+    /* eslint-disable react-hooks/exhaustive-deps */
+  }, [listingBlockProps]);
 
   const handleSelectFilter = (ev, { name }) => {
     const filtered = filterResults(items, name, content.filter);
@@ -82,8 +85,6 @@ const CollectionView = (props) => {
       setActiveFilter(name);
     }
   };
-
-  const listingBlockProps = content[blocksFieldname]?.[listingBlockid] || {};
 
   return (
     <Container>
@@ -111,7 +112,7 @@ const CollectionView = (props) => {
               </p>
             )}
             <div className={cx('block listing', listingBlockProps.variation)}>
-              {items ? (
+              {items && items.length > 0 ? (
                 <>
                   <ListingBlockTemplate
                     items={filteredResults.length > 0 ? filteredResults : items}

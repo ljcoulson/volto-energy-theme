@@ -3,6 +3,7 @@ import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsView';
 import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
 import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
+import MetaFieldWidget from '@eeacms/volto-energy-theme/components/manage/Widgets/MetaField';
 import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
 import CollectionView from '@eeacms/volto-energy-theme/components/theme/View/CollectionView';
 import reducers from '@eeacms/volto-energy-theme/reducers';
@@ -95,6 +96,7 @@ export default function applyConfig(config) {
       ...config.views.layoutViews,
       topics_view: TopicsView,
       topic_tab_view: TopicsTabView,
+      //listing_view: CollectionView,
     },
     contentTypesViews: {
       ...config.views.contentTypesViews,
@@ -118,6 +120,7 @@ export default function applyConfig(config) {
     },
     widget: {
       ...config.widgets.widget,
+      vocab_select: MetaFieldWidget,
       // sidebar: [TemplatingToolbarWidget],
       // object_by_path: PickObject,
       // objectlist: ObjectListWidget,
@@ -126,21 +129,34 @@ export default function applyConfig(config) {
     },
   };
 
-  config.blocks.blocksConfig.listing.variations = [
-    ...config.blocks.blocksConfig.listing.variations,
-    {
-      id: 'grid',
-      isDefault: false,
-      title: 'Grid',
-      template: GridListingBlockTemplate,
-    },
-    {
-      id: 'list',
-      isDefault: false,
-      title: 'List',
-      template: ListingBlockTemplate,
-    },
-  ];
+  config.blocks.blocksConfig.listing = {
+    ...config.blocks.blocksConfig.listing,
+    showLinkMore: true,
+    variations: [
+      ...config.blocks.blocksConfig.listing.variations,
+      {
+        id: 'grid',
+        isDefault: false,
+        title: 'Grid',
+        template: GridListingBlockTemplate,
+      },
+      {
+        id: 'list',
+        isDefault: false,
+        title: 'List',
+        template: ListingBlockTemplate,
+        schemaEnhancer: ({ formData, schema, intl }) => {
+          schema.properties.metadata_fields = {
+            title: 'Metadata field',
+            widget: 'vocab_select',
+            vocabulary: { '@id': 'plone.app.vocabularies.MetadataFields' },
+          };
+          schema.fieldsets[0].fields.push('metadata_fields');
+          return schema;
+        },
+      },
+    ],
+  };
 
   // config.blocks.blocksConfig.folder_contents_block = {
   //   id: 'folder_contents_block',
