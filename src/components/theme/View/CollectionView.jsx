@@ -51,17 +51,20 @@ const CollectionView = (props) => {
   const blocksLayoutFieldname = getBlocksLayoutFieldname(content);
 
   const getListingBlock = () => {
-    return find(
-      content[blocksLayoutFieldname].items,
-      (block) => content[blocksFieldname]?.[block]?.['@type'] === 'listing',
+    return (
+      content?.[blocksLayoutFieldname] &&
+      find(
+        content[blocksLayoutFieldname].items,
+        (block) => content[blocksFieldname]?.[block]?.['@type'] === 'listing',
+      )
     );
   };
 
   const listingBlockid = getListingBlock();
 
-  const listingBlockItems = useSelector((state) => state.content.subrequests);
+  const listingBlockItems = useSelector((state) => state.content?.subrequests);
 
-  const items = listingBlockItems[listingBlockid]?.data?.items;
+  const items = listingBlockItems?.[listingBlockid]?.data?.items;
 
   const listingBlockProps = content[blocksFieldname]?.[listingBlockid] || {};
 
