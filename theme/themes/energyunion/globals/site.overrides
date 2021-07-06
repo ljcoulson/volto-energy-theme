@@ -16,7 +16,7 @@ html {
     position: relative;
     display: flex;
     align-items: center;
-    bottom: 44px;
+    bottom: 7rem;
     width: 135px;
     height: auto;
     font-size: 20px;
@@ -32,7 +32,7 @@ html {
 
   @media (max-width: 991px) {
     &:after {
-      top: 114px;
+      top: 3rem;
     }
   }
 
