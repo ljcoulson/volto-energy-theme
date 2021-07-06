@@ -11,6 +11,31 @@ html {
   overflow: hidden;
   height: 300px;
 
+  &:after {
+    content: 'DRAFT';
+    position: relative;
+    display: flex;
+    align-items: center;
+    bottom: 44px;
+    width: 135px;
+    height: auto;
+    font-size: 20px;
+    border-top: 4px solid #d92c3a;
+    border-radius: 2px;
+    color: #fff;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    font-weight: bold;
+    background-color: #00000057;
+    box-shadow: 5px 4px 11px 0px #ffffff24;
+  }
+
+  @media (max-width: 991px) {
+    &:after {
+      top: 114px;
+    }
+  }
+
   .header-bg {
     position: absolute;
     top: 0;
@@ -170,7 +195,6 @@ nav.tabs {
   }
 
   @media (max-width: 1200px) {
-
     overflow: auto;
     width: unset !important;
   }
@@ -240,36 +264,35 @@ nav.tabs {
 //Catalogue view
 
 .catalogue-listing {
-    display: grid;
-    grid-template-columns: auto auto;
-    border: none;
-    text-align: justify;
+  display: grid;
+  grid-template-columns: auto auto;
+  border: none;
+  text-align: justify;
 
-    div.catalogue-listItem {
+  div.catalogue-listItem {
     border: 1px solid #eee;
     padding: 10px;
-}
-   div.catalogue-listItem:nth-child(2) {    
+  }
+  div.catalogue-listItem:nth-child(2) {
     border-right: none;
     border-top: none;
-}
-div.catalogue-listItem:nth-child(1) {
+  }
+  div.catalogue-listItem:nth-child(1) {
     border-left: none;
     border-top: none;
-}
-div.catalogue-listItem:nth-child(3) {    
+  }
+  div.catalogue-listItem:nth-child(3) {
     border-bottom: none;
     border-left: none;
-}
-div.catalogue-listItem:nth-child(4) {
+  }
+  div.catalogue-listItem:nth-child(4) {
     border-bottom: none;
     border-right: none;
-}
-.catalogue-right-header {
+  }
+  .catalogue-right-header {
     display: flex;
     justify-content: flex-end;
-}
-
+  }
 }
 
 // HOMEPAGE
@@ -404,7 +427,6 @@ body.homepage {
     align-items: center;
     justify-content: space-between;
     padding-right: 6rem;
-
 
     .ui.form .searchbox.field {
       position: relative;
