@@ -16,14 +16,14 @@ html {
     position: relative;
     display: flex;
     align-items: center;
-    bottom: 7rem;
+    bottom: 9.5rem;
     width: 135px;
     height: auto;
     font-size: 20px;
     border-top: 4px solid #d92c3a;
     border-radius: 2px;
     color: #fff;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
     margin: 0 auto;
     font-weight: bold;
     background-color: #00000057;
@@ -32,7 +32,7 @@ html {
 
   @media (max-width: 991px) {
     &:after {
-      top: 3rem;
+      top: 0.5rem;
     }
   }
 
