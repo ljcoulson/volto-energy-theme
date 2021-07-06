@@ -474,6 +474,34 @@ body.homepage {
     //     width     : 750px;
     //     margin-top: 2rem;
     // }
+
+    &:after {
+    content: 'DRAFT';
+    position: absolute;
+    display: flex;
+    left: 45%;
+    margin-left: -5px;
+    align-items: center;
+    width: 135px;
+    height: auto;
+    font-size: 20px;
+    border-top: 4px solid #d92c3a;
+    border-radius: 2px;
+    color: #fff;
+    padding: 1.5rem 2rem;
+    margin: 0 auto;
+    font-weight: bold;
+    background-color: #00000057;
+    box-shadow: 5px 4px 11px 0px #ffffff24;
+    z-index: 1;
+  }
+  @media (max-width: 1270px) {
+    &:after {
+      transform: scale(0.70);
+      top: 5rem;
+    }
+  }
+
   }
 
   #menu-background,
