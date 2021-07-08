@@ -1,6 +1,7 @@
 import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 //import chartIcon from '@plone/volto/icons/world.svg';
 import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsView';
+import { installBlocks } from '@eeacms/volto-plotlycharts';
 import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
 import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
 import MetaFieldWidget from '@eeacms/volto-energy-theme/components/manage/Widgets/MetaField';
@@ -40,29 +41,7 @@ import '@plone/volto/config';
 export default function applyConfig(config) {
   // Add here your project's configuration here by modifying `config` accordingly
 
-  // import {
-  //   applyConfig as addonsConfig,
-  //   installFolderListing,
-  //   // installCustomAddonGroup,
-  //   installTableau,
-  // } from 'volto-addons/config';
-  // import { applyConfig as ckeditorConfig } from 'volto-ckeditor/config';
-  // import { applyConfig as dataBlocksConfig } from 'volto-datablocks/config';
-  // import { applyConfig as blocksConfig } from 'volto-blocks/config';
-  // // import { applyConfig as plotlyConfig } from 'volto-plotlycharts/config';
-  // import { applyConfig as installSidebar } from 'volto-sidebar/config';
-
-  // const config = [
-  //   // installCustomAddonGroup,
-  //   addonsConfig,
-  //   installSidebar,
-  //   installFolderListing,
-  //   installTableau,
-  //   // plotlyConfig,
-  //   ckeditorConfig,
-  //   blocksConfig,
-  //   dataBlocksConfig,
-  // ].reduce((acc, apply) => apply(acc), voltoConfig);
+  config = [installBlocks].reduce((acc, apply) => apply(acc), config);
 
   const allowed_cors_destinations = [
     ...(config.settings.allowed_cors_destinations || []),
