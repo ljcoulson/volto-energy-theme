@@ -5,7 +5,7 @@ pipeline {
         GIT_NAME = "volto-energy-theme"
         NAMESPACE = "@eeacms"
         SONARQUBE_TAGS = "volto.eea.europa.eu,climate-energy.eea.europa.eu"
-        DEPENDENCIES = ""
+        DEPENDENCIES = "@eeacms/volto-plotlycharts"
     }
 
   stages {
