@@ -9,14 +9,14 @@ import { Container, Item, Placeholder } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
 import Filter from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/Filter';
 
-import { find } from 'lodash';
+import { find, map } from 'lodash';
 
 import {
   getBlocksFieldname,
   getBlocksLayoutFieldname,
 } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
-import { getBaseUrl } from '@plone/volto/helpers';
+import { getBaseUrl, hasBlocksData } from '@plone/volto/helpers';
 import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
 import { getContentWithData } from '@eeacms/volto-energy-theme/actions';
 import cx from 'classnames';
@@ -152,6 +152,29 @@ const CollectionView = (props) => {
           </Item.Group>
         </div>
       </section>
+      {hasBlocksData(content) &&
+        map(content[blocksLayoutFieldname].items, (block) => {
+          const Block =
+            config.blocks.blocksConfig[
+              content[blocksFieldname]?.[block]?.['@type']
+            ]?.['view'] || null;
+          return Block !== null &&
+            content[blocksFieldname][block]['@type'] !== 'title' ? (
+            <Block
+              key={block}
+              id={block}
+              properties={content}
+              data={content[blocksFieldname][block]}
+            />
+          ) : (
+            //   <div key={block}>
+            //     {intl.formatMessage(messages.unknownBlock, {
+            //       block: content[blocksFieldname]?.[block]?.['@type'],
+            //     })}
+            //   </div>
+            ''
+          );
+        })}
     </Container>
   );
 };

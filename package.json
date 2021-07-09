@@ -1,6 +1,6 @@
 {
   "name": "@eeacms/volto-energy-theme",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "@eeacms/volto-energy-theme: Volto add-on",
   "main": "src/index.js",
   "author": "European Environment Agency: IDM2 A-Team",
@@ -17,10 +17,12 @@
     "url": "git@github.com:eea/volto-energy-theme.git"
   },
   "addons": [
-    "@eeacms/volto-corsproxy"
+    "@eeacms/volto-corsproxy",
+    "@eeacms/volto-plotlycharts"
   ],
   "dependencies": {
     "@eeacms/volto-corsproxy": "2.1.1",
+    "@eeacms/volto-plotlycharts": "*",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "mgr-pdf-viewer-react": "^1.0.3",
     "react-scrollspy": "^3.4.3",
