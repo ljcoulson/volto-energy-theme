@@ -25,6 +25,7 @@ import {
   Icon,
   OutdatedBrowser,
   AppExtras,
+  SkipLinks,
 } from '@plone/volto/components';
 import { BodyClass, getBaseUrl, getView, isCmsUi } from '@plone/volto/helpers';
 import {
@@ -148,6 +149,7 @@ class App extends Component {
           />
           {this.props.pathname === '/' ? (
             <React.Fragment>
+              <SkipLinks />
               <Header
                 actualPathName={this.props.pathname}
                 homepage={true}
@@ -176,6 +178,7 @@ class App extends Component {
             </React.Fragment>
           ) : (
             <div className="content-page">
+              <SkipLinks />
               <PageHeader />
               <Grid columns={3} divided>
                 <Grid.Row>
