@@ -3,6 +3,7 @@ import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 import TopicsView from '@eeacms/volto-energy-theme/components/theme/View/TopicsView';
 import { installBlocks } from '@eeacms/volto-plotlycharts/config';
 import TopicsTabView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabView';
+import TopicsTabParentView from '@eeacms/volto-energy-theme/components/theme/View/TopicsTabParentView';
 import ListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/ListTemplate';
 import MetaFieldWidget from '@eeacms/volto-energy-theme/components/manage/Widgets/MetaField';
 import GridListingBlockTemplate from '@eeacms/volto-energy-theme/components/manage/Blocks/Listing/GridTemplate';
@@ -75,6 +76,7 @@ export default function applyConfig(config) {
       ...config.views.layoutViews,
       topics_view: TopicsView,
       topic_tab_view: TopicsTabView,
+      topic_tab_view_parent: TopicsTabParentView, //grandparent view
       //listing_view: CollectionView,
     },
     contentTypesViews: {
