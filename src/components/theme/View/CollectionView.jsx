@@ -64,7 +64,8 @@ const CollectionView = (props) => {
 
   const listingBlockItems = useSelector((state) => state.content?.subrequests);
 
-  const items = listingBlockItems?.[listingBlockid]?.data?.items;
+  const items =
+    listingBlockItems?.[listingBlockid]?.data?.items || content.items;
 
   const listingBlockProps = content[blocksFieldname]?.[listingBlockid] || {};
 
@@ -75,7 +76,7 @@ const CollectionView = (props) => {
     const options = {
       metadata_fields: '_all',
       is_search: 1,
-      fullobjects: 1,
+      //fullobjects: 1, by default?
     };
     dispatch(getContentWithData(path, null, listingBlockid, options));
     /* eslint-disable react-hooks/exhaustive-deps */
@@ -120,6 +121,7 @@ const CollectionView = (props) => {
                   <ListingBlockTemplate
                     items={filteredResults.length > 0 ? filteredResults : items}
                     {...listingBlockProps}
+                    path={path}
                     isEditMode={false}
                   />
                   {content.filter ? (
