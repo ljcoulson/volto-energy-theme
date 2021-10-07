@@ -659,6 +659,10 @@ body:not(.has-toolbar-collapsed):not(.anonymous) {
   }
 }
 
+#toolbar .toolbar-content.show {
+  z-index: 4;
+}
+
 .editor-toolbar-wrapper {
   position: sticky;
   z-index: 2;
