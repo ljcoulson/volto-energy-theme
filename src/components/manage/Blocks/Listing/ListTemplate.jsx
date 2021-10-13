@@ -32,7 +32,7 @@ const ListTemplate = (props) => {
                     to={getPath(item['@id'] || item.url)}
                   >
                     <h4 className="item-description">
-                      {item.description || item.title || item.Title}
+                      {item.title || item.Title}
                     </h4>
                   </Link>
                 </div>
