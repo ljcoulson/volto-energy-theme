@@ -18,6 +18,7 @@ import {
   getBlocksFieldname,
   getBlocksLayoutFieldname,
   hasBlocksData,
+  getBaseUrl,
 } from '@plone/volto/helpers';
 import { flattenToAppURL } from '@plone/volto/helpers';
 
@@ -151,6 +152,7 @@ class DefaultView extends Component {
                 key={`block-${block}`}
                 blockID={block}
                 properties={content}
+                path={getBaseUrl(this.props.pathname || '')}
                 data={content[blocksFieldname][block]}
               />
             ) : (
