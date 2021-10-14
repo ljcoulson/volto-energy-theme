@@ -150,7 +150,7 @@ class SearchWidget extends Component {
       {
         text: item.title,
       },
-      () => this.onSubmit(),
+      () => item?.['@id'] && this.props.history.push(item['@id']),
     );
     this.onClose();
   };
