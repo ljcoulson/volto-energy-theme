@@ -335,14 +335,8 @@ class PageNavigation extends Component {
                                               navItem.items &&
                                               navItem.items.length
                                                 ? flattenToAppURL(
-                                                    navItem.items.find(
-                                                      (url) =>
-                                                        url.title === 'Main',
-                                                    )?.['@id'] ||
-                                                      navItem.items.find(
-                                                        (url) =>
-                                                          url.title === 'Main',
-                                                      )?.url,
+                                                    navItem.items?.[0]['@id'] ||
+                                                      navItem.items?.[0].url,
                                                   )
                                                 : flattenToAppURL(
                                                     navItem['@id'] ||

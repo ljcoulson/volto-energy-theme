@@ -348,11 +348,7 @@ class Navigation extends Component {
                     to={
                       item.items.length > 0
                         ? getPath(
-                            item.items?.find((url) => url.title === 'Main')?.[
-                              '@id'
-                            ] ||
-                              item.items?.find((url) => url.title === 'Main')
-                                ?.url,
+                            item.items?.[0]['@id'] || item.items?.[0]?.url,
                           )
                         : getPath(item['@id'] || item.url)
                     }
