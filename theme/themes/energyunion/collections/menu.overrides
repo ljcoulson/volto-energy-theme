@@ -99,6 +99,7 @@
     padding-right: 2rem;
     padding-left: 1rem;
     background: rgba(0, 134, 117, 0.95);
+    overflow: auto;
 
     .menu-item {
       a {
@@ -267,6 +268,7 @@
       padding-right: 2rem;
       padding-left: 1rem;
       background: rgba(0, 134, 117, 0.95);
+      overflow: auto;
 
       .menu-item {
         a {
@@ -436,6 +438,7 @@
 
     .second-level {
       background: rgba(0, 134, 117, 1) !important;
+      overflow: auto;
     }
 
     .third-level {
