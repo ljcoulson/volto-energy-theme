@@ -489,14 +489,14 @@ class PageNavigation extends Component {
                   <Link
                     to={
                       item.items.length > 0
-                        ? getPath(
+                        ? getPath(item['@id'] || item.url)
+                        : getPath(
                             item.items?.find((url) => url.title === 'Main')?.[
                               '@id'
                             ] ||
                               item.items?.find((url) => url.title === 'Main')
                                 ?.url,
                           )
-                        : getPath(item['@id'] || item.url)
                     }
                     key={getPath(item['@id'] || item.url)}
                   >
