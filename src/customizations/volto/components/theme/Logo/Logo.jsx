@@ -18,7 +18,7 @@ const messages = defineMessages({
   },
   plonesite: {
     id: 'Plone Site',
-    defaultMessage: 'Plone Site',
+    defaultMessage: 'Climate and energy in the EU',
   },
 });
 
