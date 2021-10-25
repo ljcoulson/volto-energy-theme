@@ -54,7 +54,7 @@ const Footer = (props) => (
             largeScreen={6}
           >
             <p>
-              Find information on the EU and its Member States' progress in
+              Find information on the EU and its Member States' progress towards
               their 2030 targets on climate and energy.
             </p>
             <div>
