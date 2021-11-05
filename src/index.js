@@ -68,6 +68,7 @@ export default function applyConfig(config) {
     navDepth: 4,
     allowed_cors_destinations,
     tableauVersion: '2.3.0',
+    pdfWorkerSrc: '//www.eea.europa.eu/pdfjs/pdf.worker.min.js',
   };
 
   config.views = {
