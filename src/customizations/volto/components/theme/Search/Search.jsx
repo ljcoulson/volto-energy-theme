@@ -264,7 +264,7 @@ class Search extends Component {
                           )}
                         <Item.Description>
                           <div className="descriptionBody">
-                            {item.description && item.description}
+                            {item.description ? item.description : ''}
                           </div>
                           <div className="searchMetadata">
                             <div>
