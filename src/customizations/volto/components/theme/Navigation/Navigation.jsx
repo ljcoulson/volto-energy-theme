@@ -332,9 +332,6 @@ class Navigation extends Component {
               <h2 style={{ fontWeight: 600 }}>
                 <i>{this.state.subTopics.type}</i>
               </h2>
-              <p style={{ fontWeight: 100 }} className="mb-5">
-                Subtopics
-              </p>
               {this.state.subTopics.items.map((item) => (
                 <div
                   key={getPath(item['@id'] || item.url)}
