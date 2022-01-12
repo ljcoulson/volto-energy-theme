@@ -21,7 +21,7 @@
     "@eeacms/volto-plotlycharts"
   ],
   "dependencies": {
-    "@eeacms/volto-corsproxy": "2.1.1",
+    "@eeacms/volto-corsproxy": "*",
     "@eeacms/volto-plotlycharts": "*",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "mgr-pdf-viewer-react": "^1.0.3",
