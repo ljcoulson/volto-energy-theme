@@ -6,7 +6,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from '@plone/volto/helpers';
+import { Helmet, getBaseUrl } from '@plone/volto/helpers';
 import { defineMessages, injectIntl } from 'react-intl';
 
 import { Container, Image } from 'semantic-ui-react';
@@ -78,7 +78,7 @@ class DefaultView extends Component {
 
   render() {
     // console.log('im default view');
-    const { content, intl } = this.props;
+    const { content, intl, location } = this.props;
     const blocksFieldname = getBlocksFieldname(content);
     const blocksLayoutFieldname = getBlocksLayoutFieldname(content);
 
@@ -113,6 +113,7 @@ class DefaultView extends Component {
               id={block}
               properties={content}
               data={content[blocksFieldname][block]}
+              path={getBaseUrl(location?.pathname || '')}
             />
           ) : (
             <div key={block}>
