@@ -483,8 +483,3 @@
 body.menu-open-contentpage {
   overflow: hidden;
 }
- 
-// filters Menu 
-.headings_navigation .ui.vertical.menu {
-  width: 100%;
-}
