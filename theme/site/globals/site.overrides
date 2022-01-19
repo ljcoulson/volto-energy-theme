@@ -76,7 +76,7 @@ html {
     font-size: 1rem;
 
     a {
-      color: white;
+      color: white !important;
 
       @media (max-width: 825px) {
         &:not(:nth-last-child(-n + 3)) {
