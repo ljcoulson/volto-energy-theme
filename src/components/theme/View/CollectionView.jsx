@@ -97,12 +97,7 @@ const CollectionView = (props) => {
         <div className="search-listing item-listing">
           <Item.Group>
             <h1
-              style={{
-                marginTop: '0',
-                marginLeft: '2rem',
-                marginRight: '2rem',
-              }}
-              className="documentFirstHeading"
+              className="govuk-heading-l"
             >
               {content.title}
               {content.subtitle && ` - ${content.subtitle}`}

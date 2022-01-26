@@ -1,101 +1,67 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { BodyClass } from '@plone/volto/helpers';
+/**
+ * Header component.
+ * @module components/theme/Header/Header
+ */
 
-import ecLogo from '@eeacms/volto-energy-theme/components/theme/Header/ec_white_negative_color.png';
-import eeaLogo from '@eeacms/volto-energy-theme/components/theme/Header/eea_white.png';
-
-import {
-  Logo,
-  Navigation,
-  SearchWidget,
-  Breadcrumbs,
-} from '@plone/volto/components';
-import PageNavigation from '@eeacms/volto-energy-theme/components/theme/Header/PageNavigation';
-
-// import { Container, Segment } from 'semantic-ui-react';
-// import { Portal } from 'react-portal';
-
-class Header extends Component {
-  static propTypes = {
-    token: PropTypes.string,
-    pathname: PropTypes.string.isRequired,
-  };
-
-  static defaultProps = {
-    token: null,
-  };
-
-  render() {
-    // console.log('-------------', this.props.navigationItems)
-    return (
-      <div className="header-wrapper" role="banner">
-        {!this.props.token && <BodyClass className="anonymous" />}
-        {this.props.homepage || this.props.noBreadcrumbs ? (
-          ''
-        ) : (
-          <Breadcrumbs pathname={this.props.pathname} />
-        )}
-        {this.props.homepage ? (
-          <React.Fragment>
-            <div className="headerTop">
-              <div className="homepageHeader">
-                <Logo isHomepage={this.props.actualPathName === '/' || false} />
-
-                <div
-                  style={{ marginRight: '2rem' }}
-                  className="footerLogoWrapper"
-                >
-                  <a
-                    href="https://www.ec.europa.eu/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img
-                      style={{ width: '150px', marginRight: '2rem' }}
-                      className="footerLogo"
-                      src={ecLogo}
-                      alt=""
-                    />
-                  </a>
-                  <a
-                    href="https://www.eea.europa.eu/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <img
-                      style={{ width: '110px' }}
-                      className="footerLogo"
-                      src={eeaLogo}
-                      alt=""
-                    />
-                  </a>
-                </div>
-
-                <div className="searchbar">
-                  <SearchWidget pathname={this.props.pathname} />
-                </div>
-              </div>
-            </div>
-            <Navigation
-              isHomepage={this.props.homepage}
-              pathname={this.props.pathname}
-            />
-          </React.Fragment>
-        ) : (
-          <PageNavigation
-            isHomepage={this.props.homepage}
-            navigation={this.props.navigationItems}
-            pathname={this.props.pathname}
-          />
-        )}
-      </div>
-    );
-  }
-}
-
-export default connect((state) => ({
-  token: state.userSession.token,
-  pathname: state.router.location ? state.router.location.pathname : '',
-}))(Header);
+ import React, { Component } from 'react';
+ import PropTypes from 'prop-types';
+ import { connect } from 'react-redux';
+ import { Header as GovukHeader, Input } from 'govuk-react-jsx';
+ import { Anontools } from '@plone/volto/components';
+ 
+ /**
+  * Header component class.
+  * @class Header
+  * @extends Component
+  */
+ class Header extends Component {
+   /**
+    * Property types.
+    * @property {Object} propTypes Property types.
+    * @static
+    */
+   static propTypes = {
+     token: PropTypes.string,
+     pathname: PropTypes.string.isRequired,
+   };
+ 
+   /**
+    * Default properties.
+    * @property {Object} defaultProps Default properties.
+    * @static
+    */
+   static defaultProps = {
+     token: null,
+   };
+ 
+   /**
+    * Render method.
+    * @method render
+    * @returns {string} Markup for the component.
+    */
+   render() {
+     return (<>
+       <GovukHeader
+         navigationClassName='govuk-!-padding-left-0'
+         navigation={[
+           ...this.props.items.map(({title, url}) => ({
+               children: title,
+               href: url === '' ? '/' : url
+             })
+           ),
+           {
+             children: !this.props.token && <Anontools />
+           }
+         ]}
+         serviceName="GOV.UK Open Data"
+         serviceUrlHref="/"
+       />
+     </>);
+   }
+ }
+ 
+ export default connect((state) => ({
+   token: state.userSession.token,
+   items: state.navigation.items,
+ }))(Header);
+ 

@@ -45,3 +45,7 @@ body:not(.section-controlpanel) .topics .ui.items .header {
     z-index: 9999;
   }
 }
+
+.test-class-x {
+  color: blue;
+}
